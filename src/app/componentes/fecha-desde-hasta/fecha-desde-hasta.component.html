@@ -1,0 +1,6 @@
+<div [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'caja_contenedora_texto':modo_cabecera}">
+    <app-tildar *ngIf="inputModel.ver_filtro_desde" class="alinear_izquierda" [(inputModel)]=inputModel.desde [titulo]="inputModel.titulo_desde" [estilo_switch_vertical]="true" (inputModelChange)="f_cambio_algo()"></app-tildar>
+    <app-fecha class="alinear_izquierda" *ngIf="inputModel.desde" [(inputModel)]="inputModel.desde_fecha" [CajaEstilo]=1 (inputModelChange)="f_cambio_algo()"></app-fecha>
+    <app-tildar *ngIf="inputModel.ver_filtro_hasta" class="alinear_izquierda" [(inputModel)]=inputModel.hasta [titulo]="inputModel.titulo_hasta" [estilo_switch_vertical]="true" (inputModelChange)="f_cambio_algo()"></app-tildar>
+    <app-fecha class="alinear_izquierda" *ngIf="inputModel.hasta" [(inputModel)]="inputModel.hasta_fecha" [CajaEstilo]=1 (inputModelChange)="f_cambio_algo()"></app-fecha>
+</div>

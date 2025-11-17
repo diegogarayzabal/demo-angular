@@ -1,0 +1,62 @@
+.upload-container>input {
+  display: none;
+}
+
+.upload-button{
+  background-color: royalblue;
+  cursor: pointer;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 8px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  border: 1px solid black;
+  &.con_efectos {
+    transition: all 0.5s;
+  }
+  &.con_efectos:hover {
+    background-color: #FFA07A;
+  }
+}
+
+.fondo_confirmar {
+  background-color: royalblue;
+}
+
+.fondo_cancelar {
+  background-color: crimson;
+}
+
+.fondo_modificar {
+  background-color: greenyellow;
+}
+
+.fondo_celeste {
+  background-color: skyblue;
+}
+
+.fondo_gris_claro {
+  background-color: lightgray;
+}
+
+.fondo_rosa_claro {
+  background-color: lightpink;
+}
+
+.fondo_naranja {
+  background-color: lightsalmon;
+}
+
+.fondo_verde {
+  background-color: yellowgreen;
+}
+
+.fondo_blanco {
+  background-color: white;
+}
+
+

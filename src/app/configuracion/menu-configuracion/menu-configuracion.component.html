@@ -1,0 +1,88 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="'CONFIGURACIÓN'" [EsImagen]="false" [Negrita]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla!=='permitiendo'" (click)="f_ver(1)" [AlinearIzquierda]="true" [Seleccionado]="viendo===1" [EsImagen]="false" [Titulo]="'Areas'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla!=='permitiendo'" (click)="f_ver(2)" [AlinearIzquierda]="true" [Seleccionado]="viendo===2" [EsImagen]="false" [Titulo]="'Estados Casos'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla!=='permitiendo'" (click)="f_ver(3)" [AlinearIzquierda]="true" [Seleccionado]="viendo===3" [EsImagen]="false" [Titulo]="'Parámetros Generales'"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--listado de areas-->
+    <table *ngIf="pantalla==='listado' && viendo===1" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Nombre</b></th>
+                <th colspan="2"><app-imagen-opcion-en-tabla (click)="f_nuevo()" [ImagenAgregar]="true" [Titulo]="'Nueva Area'"></app-imagen-opcion-en-tabla></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of G.areas" align=left>
+                <td>{{item.nombre}}</td>
+                <td align=center>
+                    <app-imagen-opcion-en-tabla (click)="f_modificar(item)" [ImagenModificar]="true" [Titulo]="'Modificar'"></app-imagen-opcion-en-tabla>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--listado de estados de los casos-->
+    <table *ngIf="pantalla==='listado' && viendo===2" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Nombre</b></th>
+                <th colspan="2"><app-imagen-opcion-en-tabla (click)="f_nuevo()" [ImagenAgregar]="true" [Titulo]="'Nueva Area'"></app-imagen-opcion-en-tabla></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of G.estados_casos" align=left>
+                <td>{{item.nombre}}</td>
+                <td align=center>
+                    <app-imagen-opcion-en-tabla (click)="f_modificar(item)" [ImagenModificar]="true" [Titulo]="'Modificar'"></app-imagen-opcion-en-tabla>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--abm-->
+    <div *ngIf="pantalla==='abm'" class="div_abm div_abm_top_con_cabecera0">
+        <table class="tabla_abm">
+            <thead>
+                <tr>
+                    <th class="alto-45" colspan=2>
+                        <app-menu-item (click)="f_guardar()" [AlinearDerecha]="true" [ImagenGuardar]="true" [Titulo]="'Guardar datos'"></app-menu-item>
+                        <app-menu-item (click)="pantalla='listado'" [AlinearIzquierda]="true" [ImagenBorrar]="true" [Titulo]="'Cancelar'"></app-menu-item>
+                        <h5 *ngIf="viendo===1 && m.id===0">NUEVA AREA</h5>
+                        <h5 *ngIf="viendo===1 && m.id>0">MODIFICANDO AREA</h5>
+                        <h5 *ngIf="viendo===2 && m.id===0">NUEVO ESTADO</h5>
+                        <h5 *ngIf="viendo===2 && m.id>0">MODIFICANDO ESTADO</h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nombre:</td>
+                    <td>
+                        <app-texto [(inputModel)]="m.nombre" [titulo]="''" [ancho]=400 [alto]=40></app-texto>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="pantalla==='listado' && viendo===3" class="div_abm div_abm_top_con_cabecera0">
+        <table class="tabla_abm">
+            <thead *ngIf="f_parametros_modificados()">
+                <tr>
+                    <th class="alto-45" colspan=2>
+                        <app-menu-item (click)="f_guardar_configuracion()" [AlinearDerecha]="true" [ImagenGuardar]="true" [Titulo]="'Guardar datos'"></app-menu-item>
+                        <app-menu-item (click)="f_cancelar_configuracion()" [AlinearIzquierda]="true" [ImagenBorrar]="true" [Titulo]="'Cancelar'"></app-menu-item>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Mail - Servidor:</td><td><app-texto [(inputModel)]="parametros_sistema_abm.mail_Host" [ancho]=400 [alto]=40></app-texto></td></tr>
+                <tr><td>Mail - Puerto:</td><td><app-numero [(inputModel)]="parametros_sistema_abm.mail_Port" [decimales]="0" [ConFormato]="0" [alinear_centrado]="true"></app-numero></td></tr>
+                <tr><td>Mail - Usuario:</td><td><app-texto [(inputModel)]="parametros_sistema_abm.mail_Username" [ancho]=400 [alto]=40></app-texto></td></tr>
+                <tr><td>Mail - Contraseña:</td><td><app-texto [(inputModel)]="parametros_sistema_abm.mail_Password" [ancho]=400 [alto]=40></app-texto></td></tr>
+                <tr><td>Mail - Cuenta:</td><td><app-texto [(inputModel)]="parametros_sistema_abm.mail_setFrom_mail" [ancho]=400 [alto]=40></app-texto></td></tr>
+                <tr><td>Mail - Nombre:</td><td><app-texto [(inputModel)]="parametros_sistema_abm.mail_setFrom_nombre" [ancho]=400 [alto]=40></app-texto></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #contenedorConfirmacion></ng-template>

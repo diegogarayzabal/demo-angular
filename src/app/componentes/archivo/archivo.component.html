@@ -1,0 +1,6 @@
+<div class="upload-container" [style.width.px]="ancho">
+  <label for="file-input">
+    <div class="upload-button" [style.height.px]="alto" [ngClass]="{'con_efectos':Efectos,'fondo_confirmar':FondoConfirmar,'fondo_cancelar':FondoCancelar,'fondo_modificar':FondoModificar,'fondo_celeste':FondoCeleste,'fondo_gris_claro':FondoGrisClaro,'fondo_rosa_claro':FondoRosaClaro,'fondo_naranja':FondoNaranja,'fondo_verde':FondoVerde}">{{titulo}}</div>
+  </label>
+  <input id="file-input" (change)="subio_archivo($event)" type="file"/>
+</div>

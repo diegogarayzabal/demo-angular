@@ -1,0 +1,8 @@
+<div [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'caja_contenedora_texto':modo_cabecera}">
+    <app-tildar class="alinear_izquierda" *ngIf="inputModel.ver_uno_solo" [(inputModel)]="inputModel.uno_solo" [titulo]="'Uno solo:'" (inputModelChange)="f_cambio_uno_solo()"></app-tildar>
+    <app-numero class="alinear_izquierda" *ngIf="inputModel.uno_solo" [(inputModel)]="inputModel.desde_numero" [decimales]="inputModel.decimales" [alinear_centrado]="inputModel.numero_centrado" [ConFormato]="inputModel.ConFormato" (inputModelChange)="f_cambio_algo()"></app-numero>
+    <app-tildar class="alinear_izquierda" *ngIf="!inputModel.uno_solo" [(inputModel)]="inputModel.desde_ver" [titulo]="inputModel.titulo_desde" (inputModelChange)="f_cambio_algo()"></app-tildar>
+    <app-numero class="alinear_izquierda" *ngIf="!inputModel.uno_solo && inputModel.desde_ver" [(inputModel)]="inputModel.desde_numero" [decimales]="inputModel.decimales" [alinear_centrado]="inputModel.numero_centrado" [titulo]="inputModel.titulo_desde" (inputModelChange)="f_cambio_algo()"></app-numero>
+    <app-tildar class="alinear_izquierda" *ngIf="!inputModel.uno_solo" [(inputModel)]="inputModel.hasta_ver" [titulo]="inputModel.titulo_hasta" (inputModelChange)="f_cambio_algo()"></app-tildar>
+    <app-numero class="alinear_izquierda" *ngIf="!inputModel.uno_solo && inputModel.hasta_ver" [(inputModel)]="inputModel.hasta_numero" [decimales]="inputModel.decimales" [alinear_centrado]="inputModel.numero_centrado" [titulo]="inputModel.titulo_hasta" (inputModelChange)="f_cambio_algo()"></app-numero>
+</div>

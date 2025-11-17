@@ -1,0 +1,43 @@
+<div style="position: fixed;top: 0px;height: 100vh;margin: 0;filter: alpha(opacity=65);-moz-opacity: 65;opacity: 0.65;background-color: gray;"
+ [ngClass]="{'margen_izquierdo_cero':datos.general || G.modo_celular,'margen_izquierdo_menu':!datos.general && !G.modo_celular,'general':datos.general,'no_general':!datos.general}">
+</div>
+<div class="Alerta" *ngIf="termino_de_cargar" [ngClass]="{'margen_izquierdo_cero':datos.general || G.modo_celular,'margen_izquierdo_menu':!datos.general && !G.modo_celular,'general':datos.general,'no_general':!datos.general}">
+    <div [ngClass]="{'sombra-negra':datos.tipo===1,'sombra-roja':datos.tipo===2,'fondo-alerta':datos.tipo===3,'con_overflow':overflowy}" [style.width.px]="ancho" [style.max-height.px]="G.alto-100">
+        <span>{{datos.mensaje}}</span>
+        <hr *ngIf="datos.mensaje!=='' && componentes.length>0">
+        <table class="tabla_sin_bordes ancho-porcentaje-100" style="margin-top:10px;">
+            <tr *ngFor="let c of componentes"><td>
+                <app-select-especial *ngIf="c.tipo==='select-especial'" class="alinear_izquierda" [campo]="c.campo" [datos]="c.datos" [titulo]="c.titulo" [(inputModel)]="c.dato" [borrable]="c.borrable" [buscable]="c.buscable" [ancho_px]="c.ancho_px"></app-select-especial>
+                <app-select-comun *ngIf="c.tipo==='select-comun'" class="alinear_izquierda" [datos]="c.datos" [(inputModel)]="c.dato" [ancho]="c.ancho"></app-select-comun>
+                <app-numero *ngIf="c.tipo==='numero'" class="alinear_izquierda" [(inputModel)]=c.dato [decimales]=c.decimales [min]=c.minimo [max]=c.maximo [titulo]="c.titulo" [autocorrector]="c.auto_corrector" [ConFormato]="c.ConFormato"></app-numero>
+                <app-fecha *ngIf="c.tipo==='fecha'" class="alinear_izquierda" [(inputModel)]="c.dato" [titulo]="c.titulo" [con_horario]="c.con_horario" [ConFechaMaxima]="c.ConFechaMaxima" [FechaMaximaDesdeFecha]="c.FechaMaximaDesdeFecha"></app-fecha>
+                <textarea *ngIf="c.tipo==='textarea'" class="alinear_izquierda" [(ngModel)]="c.dato"  [style.width.px]="c.ancho" [style.height.px]="c.alto" placeholder="{{c.placeholder}}"></textarea>
+                <app-texto *ngIf="c.tipo==='texto'" class="alinear_izquierda" [(inputModel)]="c.dato" [titulo]="c.titulo" [ancho]="c.ancho"></app-texto>
+                <app-tildar *ngIf="c.tipo==='tildar'" class="alinear_izquierda" [(inputModel)]="c.dato" [titulo]="c.titulo" [estilo_switch_vertical]="c.estilo_switch_vertical"></app-tildar>
+            </td></tr>
+            <tr *ngFor="let c of componentes_tablas"><td>
+                <table class="ancho-porcentaje-100" [ngClass]="c.clases_tabla">
+                    <thead *ngIf="c.mostrar_cabecera">
+                        <tr [ngClass]="c.clases_cabecera">
+                            <th *ngFor="let campo of c.cabeceras" align=center>{{campo.titulo}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of c.datos">
+                            <td *ngFor="let campo of c.cabeceras" [align]="campo.alinear" [style.width.px]="campo.ancho_px" (click)="retornar_item(c.click_retorna_item,item)">{{f_formato(campo,item)}}</td>
+                        </tr>
+                        <tr *ngIf="f_tiene_sumatoria(c.cabeceras,c.datos).tiene" style="background-color: white;">
+                            <td *ngFor="let t of f_tiene_sumatoria(c.cabeceras,c.datos).totales" [align]="t.alinear">
+                                <b *ngIf="t.texto!==''">{{t.texto}}</b>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </td></tr>
+            <tr>
+                <td align="right"><app-boton style="margin-left:5px;" *ngFor="let item of datos.respuestas" [Tipo]="item.tipo" [titulo]="item.titulo" (enter)="retornar(item.valor)"></app-boton></td>
+            </tr>
+        </table>
+    </div>
+</div>

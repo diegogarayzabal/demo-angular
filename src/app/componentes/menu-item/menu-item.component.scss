@@ -1,0 +1,207 @@
+.menu_item_caja_texto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    height: 34px;
+    &.tamanio2_5 {
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+        height: 64px;
+    }
+    &.tamanio3 {
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        height: 94px;
+    }
+    border: 1px solid #C0C0C0;
+    padding-left: 3px;
+    padding-right: 3px;
+    &.con_efectos {
+        transition: all 0.5s;
+    }
+    &.con_efectos:hover {
+        border: 1px solid black;
+        background-color: #FFA07A;
+    }
+    &.negrita span {
+        font-weight: bold;
+    }
+    &.letra_grande span {
+        font-size: x-large;
+    }
+    &.fondo_negro {
+        color: aliceblue;
+    }
+}
+
+.caja_contenedora {
+    display:inline-block;
+    border:1px solid black;
+    background-color: white;
+    &.imagen_tamanio1 {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        height: 15px;
+    }
+    &.imagen_tamanio2 {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        height: 34px;
+    }
+    &.imagen_tamanio2_5 {
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+        height: 64px;
+    }
+    &.imagen_tamanio3 {
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        height: 94px;
+    }
+    &.seleccionado {
+        border:1px solid brown;
+        &.seleccionado_doble_ancho {
+            border:3px solid brown;
+        }
+        box-shadow: 2px 2px 6px #9900FF;
+        //background-color:deepskyblue
+    }
+}
+.menu_item_caja {
+    display: flex;
+    //display:inline-block;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 34px;
+    &.imagen_tamanio1 {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        height: 15px;
+        &.ImagenAnchoFijo {
+            width: 15px;
+        }
+    }
+    &.imagen_tamanio2 {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        height: 34px;
+        &.ImagenAnchoFijo {
+            width: 34px;
+        }
+    }
+    &.imagen_tamanio2_5 {
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+        height: 62px;
+        &.ImagenAnchoFijo {
+            width: 62px;
+        }
+    }
+    &.imagen_tamanio3 {
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        height: 92px;
+        &.ImagenAnchoFijo {
+            width: 92px;
+        }
+    }
+    overflow-y: hidden;
+    overflow-x: hidden;
+    img {
+        &.imagen_tamanio1 {
+            height: 15px;
+            &.ImagenAnchoFijo {
+                width: 15px;
+            }
+        }
+        &.imagen_tamanio2 {
+            height:32px;
+            &.ImagenAnchoFijo {
+                width: 32px;
+            }
+        }
+        &.imagen_tamanio2_5 {
+            height:62px;
+            &.ImagenAnchoFijo {
+                width: 62px;
+            }
+        }
+        &.imagen_tamanio3 {
+            height:92px;
+            &.ImagenAnchoFijo {
+                width: 92px;
+            }
+        }
+    }  
+    &.con_efectos {
+        transition: all 0.5s;
+    }
+    &.con_efectos:hover {
+        //background-color: #FFA07A;
+        border: 1px solid green;
+    }
+}
+
+.izquierda { float:left; margin-left:2px; }
+.derecha {float:right; margin-right:2px;}
+
+.fondo_confirmar {
+    background-color: royalblue;
+}
+
+.fondo_cancelar {
+    background-color: crimson;
+}
+
+.fondo_modificar {
+    background-color: greenyellow;
+}
+
+.fondo_celeste {
+    background-color: skyblue;
+}
+
+.fondo_gris_claro {
+    background-color: lightgray;
+}
+
+.fondo_rosa_claro {
+    background-color: lightpink;
+}
+
+.fondo_naranja {
+    background-color: lightsalmon;
+}
+
+.fondo_verde {
+    background-color: yellowgreen;
+}
+
+.fondo_blanco {
+    background-color: white;
+}
+
+.fondo_amarillo {
+    background-color: #e2ea56;
+}
+
+.fondo_negro {
+    background-color: black;
+}
+
+

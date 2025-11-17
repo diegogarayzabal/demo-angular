@@ -1,0 +1,8 @@
+<div class="mensajes-container" *ngIf="G.mensajes.length > 0">
+    <div
+      class="mensaje" *ngFor="let mensaje of G.mensajes; let i = index" [ngClass]="mensaje.tipo_txt" [ngStyle]="{ 'max-width': G.ancho + 'px' }">
+      <p>{{ mensaje.texto }}</p>
+      <button *ngIf="!mensaje.autoCerrar" (click)="Funcion.MensajeBorrar(mensaje.id)">OK</button>
+    </div>
+</div>
+  

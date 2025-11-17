@@ -1,0 +1,14 @@
+<span *ngIf="ancho===null" id="mispan" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2,'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3,'ancho100porcentaje':ancho_total}"
+    style="display: inline-block;" [style.height.px]="alto">{{texto}}</span>
+<span *ngIf="ancho!==null && titulo===''" [style.width.px]="anchocaja" id="mispan" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2,'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3}"
+    style="display: inline-block;">{{texto}}</span>
+<div *ngIf="ancho!==null && titulo!==''" id="principal" [style.height.px]="altoprincipal" style="padding-top:1px" [style.width.px]="anchocaja">
+    <div id="contenedor" class="escrito" [style.height.px]="alto-1" [style.width.px]="anchocaja" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+        <div id="etiqueta" *ngIf="titulo.length>0" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+            <span>{{titulo}}</span>
+        </div>
+        <div id="texto" [ngClass]="{'alinear_derecha':alinear===1,'span_centrado':alinear===3}">
+            <input type="text" tabindex="0" class="enfocado" [ngClass]="{'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3}" [disabled]=true [style.width.px]="ancho" [(ngModel)]="texto" #numericInput />
+        </div>
+    </div>
+</div>

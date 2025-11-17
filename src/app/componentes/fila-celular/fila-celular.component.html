@@ -1,0 +1,46 @@
+<div [style.backbground.color]="fondo" style="display: inline-block;padding: 2px;width: 100%;box-sizing: border-box;">
+    <div *ngIf="label!=='' && componente!=='fecha-condicional'" style="width: 100%;box-sizing: border-box;">
+        <span *ngIf="componente!==''" style="width: 100%; padding: 3px;"><b>{{label}}</b></span>
+        <span *ngIf="componente===''" style="width: 100%; padding: 3px;display: inline-block; height: 30px;"><b>{{label}}</b> {{texto}}</span>
+    </div>
+    <div *ngIf="componente!=='fecha-condicional' && componente!==''" style="width: 100%;box-sizing: border-box;">
+        <app-boton *ngIf="componente==='doble-boton'" class="alinear_izquierda" [Tipo]=Tipo2 [alinear]=alinear [titulo]=titulo2 [ancho_porcentaje]=ancho_porcentaje [ancho]=ancho [alto]=alto [MargenSuperior]=MargenSuperior (enter)="enter2.emit()"></app-boton>
+        <app-boton *ngIf="componente==='doble-boton'" class="alinear_derecha" [Tipo]=Tipo [alinear]=alinear [titulo]=titulo [ancho_porcentaje]=ancho_porcentaje [ancho]=ancho [alto]=alto [MargenSuperior]=MargenSuperior (enter)="enter.emit()"></app-boton>
+
+        <app-boton *ngIf="componente==='boton'" [Tipo]=Tipo [alinear]=alinear [titulo]=titulo [ancho_porcentaje]=ancho_porcentaje [ancho]=ancho [alto]=alto [MargenSuperior]=MargenSuperior (enter)="enter.emit()" (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-boton>
+        <app-fecha *ngIf="componente==='fecha'" [(inputModel)]=inputModel [alto]=alto [CajaEstilo]=CajaEstilo [disabled]=disabled [modificable]=modificable [anio_maximo]=anio_maximo [anio_minimo]=anio_minimo (click)=f_click() (blur)=f_blur()
+            (inputModelChange)=f_inputModelChange()></app-fecha>
+        <app-numero *ngIf="componente==='numero'" [(inputModel)]=inputModel [alto]=alto [CajaEstilo]=CajaEstilo [min]=min [max]=max [disabled]=disabled [ConFormato]=ConFormato [autocorrector]=autocorrector [decimales]=decimales [ancho]=ancho [alinear_centrado]=alinear_centrado
+            [alinear_derecha]=alinear_derecha [alinear_izquierda]=alinear_izquierda [MostrarErrores]=MostrarErrores [Mensaje]=Mensaje (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-numero>
+        <app-select-comun *ngIf="componente==='select-comun'" [(inputModel)]=inputModel [alto]=alto [CajaEstilo]=CajaEstilo [ancho]=ancho [datos]=datos [campo]=campo (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-select-comun>
+        <app-select-especial *ngIf="componente==='select-especial'" [(inputModel)]=inputModel [alto]=alto [ancho_px]="ancho_px" [ancho_porcentaje]="ancho_porcentaje" [datos]=datos [campo]=campo [buscable]=buscable [borrable]=borrable (click)=f_click() (blur)=f_blur()
+            (inputModelChange)=f_inputModelChange()></app-select-especial>
+        <app-span *ngIf="componente==='span'" [texto]=texto [ancho]=ancho [ancho_total]=ancho_total [alto]=alto [CajaEstilo]=CajaEstilo [alinear_centrado]=alinear_centrado [alinear_derecha]=alinear_derecha [alinear_izquierda]=alinear_izquierda [alinear]=alinear
+            (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-span>
+        <app-texto *ngIf="componente==='texto'" [min]=min [max]=max [value]=value [(inputModel)]=inputModel [alto]=alto [ancho]=ancho [placeholder]=placeholder [titulo]=titulo [en_mayusculas]=en_mayusculas [alinear_centrado]=alinear_centrado [alinear_derecha]=alinear_derecha
+            [alinear_izquierda]=alinear_izquierda [alinear]=alinear [MostrarErrores]=MostrarErrores [Mensaje]=Mensaje [CajaEstilo]=CajaEstilo [disabled]=disabled [ConFormato]=ConFormato (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-texto>
+        <app-tildar *ngIf="componente==='tildar'" style="display: inline-block;" [(inputModel)]=inputModel (inputModelChange)=f_inputModelChange() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo"></app-tildar>
+    </div>
+    <div *ngIf="componente==='fecha-condicional'" style="width: 100%;box-sizing: border-box;height: 40px;display: flex;align-items: center;">
+        <span *ngIf="label!==''" style="display: inline-block;"><b>{{label}}</b></span>
+        <app-tildar style="display: inline-block;" [(inputModel)]=inputModel.valor1 (inputModelChange)=f_devolver_condicional() [estilo_switch_vertical]="estilo_switch_vertical" [titulo]="condicional_titulo"></app-tildar>
+        <app-fecha *ngIf="inputModel.valor1" [(inputModel)]=inputModel.valor2 [alto]=alto [CajaEstilo]=CajaEstilo [disabled]=disabled [modificable]=modificable [anio_maximo]=anio_maximo [anio_minimo]=anio_minimo (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange2()></app-fecha>
+    </div>
+    <div *ngIf="componente==='numero-condicional'" style="width: 100%;box-sizing: border-box;height: 40px;display: flex;align-items: center;">
+        <span *ngIf="label!==''" style="display: inline-block;"><b>{{label}}</b></span>
+        <app-tildar style="display: inline-block;" [(inputModel)]=inputModel.valor1 (inputModelChange)=f_devolver_condicional() [estilo_switch_vertical]="estilo_switch_vertical" [titulo]="condicional_titulo"></app-tildar>
+        <app-numero *ngIf="inputModel.valor1" [(inputModel)]=inputModel.valor2 [alto]=alto [CajaEstilo]=CajaEstilo [min]=min [max]=max [disabled]=disabled [ConFormato]=ConFormato [autocorrector]=autocorrector [decimales]=decimales [ancho]=ancho [alinear_centrado]=alinear_centrado [alinear_derecha]=alinear_derecha [alinear_izquierda]=alinear_izquierda [MostrarErrores]=MostrarErrores [Mensaje]=Mensaje (click)=f_click() (blur)=f_blur() (inputModelChange)=f_inputModelChange()></app-numero>
+    </div>
+    <div *ngIf="componente==='doble-tildar'" style="width: 100%;box-sizing: border-box;height: 40px;display: flex;align-items: center;">
+        <app-tildar style="display: inline-block;" class="alinear_izquierda" [(inputModel)]=inputModel.valor1 (inputModelChange)=f_devolver_condicional() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo"></app-tildar>
+        <app-tildar style="display: inline-block;" class="alinear_derecha" [(inputModel)]=inputModel.valor2 (inputModelChange)=f_inputModelChange2() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo2"></app-tildar>
+    </div>
+    <div *ngIf="componente==='doble-tildar-dependiente'" style="width: 100%;box-sizing: border-box;height: 40px;display: flex;align-items: center;">
+        <app-tildar style="display: inline-block;" class="alinear_izquierda" [(inputModel)]=inputModel.valor1 (inputModelChange)=f_devolver_condicional() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo"></app-tildar>
+        <app-tildar *ngIf="inputModel.valor1" class="alinear_derecha" [(inputModel)]=inputModel.valor2 (inputModelChange)=f_inputModelChange2() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo2"></app-tildar>
+    </div>
+    <div *ngIf="componente==='doble-tildar-dependiente-invertido'" style="width: 100%;box-sizing: border-box;height: 40px;display: flex;">
+        <app-tildar style="display: inline-block;" class="alinear_izquierda" [(inputModel)]=inputModel.valor1 (inputModelChange)=f_devolver_condicional() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo"></app-tildar>
+        <app-tildar *ngIf="!inputModel.valor1" style="display: inline-block;" class="alinear_derecha" [(inputModel)]=inputModel.valor2 (inputModelChange)=f_inputModelChange2() [estilo_switch_horizontal]="estilo_switch_horizontal" [estilo_switch_horizontal_bootstrap]="estilo_switch_horizontal_bootstrap" [estilo_switch_vertical]="estilo_switch_vertical" [estilo_tilde]="estilo_tilde" [titulo]="titulo2"></app-tildar>
+    </div>
+</div>

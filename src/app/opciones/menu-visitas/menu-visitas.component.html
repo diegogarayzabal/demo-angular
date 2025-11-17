@@ -1,0 +1,46 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [EsImagen]="false" [Titulo]="'CONSULTA DE VISITAS'" [FondoCeleste]="true" [Efectos]="false"></app-menu-item>
+    <app-menu-item [AlinearIzquierda]="true" [ImagenFiltro]="true" (click)="f_alternar_filtro(1)"></app-menu-item>
+    <app-menu-item *ngIf="viendo_filtro===0 && pantalla==='viendo_movimientos' && filtro_area!==null && filtro_area.id>0" [AlinearIzquierda]="true" [EsImagen]="false" [Titulo]="'Area: '+filtro_area.nombre" [Efectos]="false"></app-menu-item>
+    <app-menu-item *ngIf="viendo_filtro===0 && pantalla==='viendo_movimientos'" [AlinearDerecha]="true" [ImagenExcel]="true" (click)="f_exportar()"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--viendo filtro-->
+    <div *ngIf="viendo_filtro===1" class="div_filtro sombra-verde" [style.width.px]="600">
+        <div class="div_filtro_titulo" (click)="f_alternar_filtro(0)"><span>FILTROS DE CONSULTA</span></div>
+        <div class="div_filtro_fila">
+            <div class="div_filtro_texto">
+                <app-fecha-desde-hasta [(inputModel)]="filtro_fechas"></app-fecha-desde-hasta>
+            </div>
+        </div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Area: '" [mostrar_titulo]="true" [datos]="G.areas" [(inputModel)]="filtro_area" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Persona: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="filtro_persona" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila">
+            <div style="text-align: center;">
+                <app-boton [Azul]="true" [titulo]="'CONSULTAR'" [ancho]="300" (click)="f_consultar()"></app-boton>
+            </div>
+        </div>
+    </div>
+    <!-- Viendo los movimientos individuales -->
+    <table *ngIf="viendo_filtro===0 && pantalla==='viendo_movimientos'" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Usuario</b></th>
+                <th><b>Fecha</b></th>
+                <th><b>Persona</b></th>
+                <th><b>Area</b></th>
+                <th><b>Motivo</b></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="paginar.grupos!==null && paginar.grupos.length>0 && paginar.ok">
+            <tr *ngFor="let item of paginar.grupos[paginar.viendo.id].listado" align=left>
+                <td>{{item.creado_txt}}</td>
+                <td align="right">{{Funcion.mysqldatetime_a_php(item.fecha,false)}}</td>
+                <td>{{Funcion.f_persona(item.persona)}}</td>
+                <td>{{Funcion.f_traer_dato_tabla_texto(this.G.areas,item.area)}}</td>
+                <td>{{item.motivo}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #contenedorConfirmacion></ng-template>

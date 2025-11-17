@@ -1,0 +1,15 @@
+<div class="cabecera" *ngIf="!persona_modo_abm" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2,'segunda_cabecera':cabecera===2,'tercera_cabecera':cabecera===3}">
+    <app-menu-item [Seleccionado]="pantalla_persona==='datos_generales'" (click)="pantalla_persona='datos_generales'" [AlinearIzquierda]="true"  [EsImagen]="false" [Titulo]="'DATOS GENERALES'"></app-menu-item>
+    <app-menu-item *ngIf="Funcion.permitido('personas_abm')" (click)="persona_modo_abm=true" [AlinearIzquierda]="true"  [EsImagen]="false" [Titulo]="'MODIFICAR'"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2,'doble_cabecera':cabecera===2,'triple_cabecera':cabecera===3}">
+    <!--datos generales-->
+    <table *ngIf="pantalla_persona==='datos_generales'" class="tabla sombra-verde" [style.width.px]="620">
+        <tr><td><app-span class="alinear_izquierda" [titulo]="viendo_persona.doc_tipo_txt" [texto]="viendo_persona.doc_numero" [ancho]="150"></app-span></td></tr>
+        <tr><td><app-span [texto]="viendo_persona.nombre" [titulo]="'Nombre'" [ancho]=580></app-span></td></tr>
+        <tr><td><app-span [texto]="viendo_persona.telefono" [titulo]="'Teléfono'" [ancho]=580></app-span></td></tr>
+        <tr><td><app-span [texto]="viendo_persona.domicilio" [titulo]="'Domicilio'" [ancho]=580></app-span></td></tr>
+        <tr><td><app-span [texto]="viendo_persona.correo_electronico" [titulo]="'Correo Electrónico'" [ancho]=580></app-span></td></tr>
+    </table>
+</div>
+<app-abmpersona *ngIf="persona_modo_abm" [estemenu]="'personas'" [persona]="viendo_persona" (volver)="f_regreso_del_abm($event)"></app-abmpersona>

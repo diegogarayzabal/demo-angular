@@ -1,0 +1,553 @@
+$fondofill: #ccc;
+$bordenada: #C0C0C0;
+$bordehover: black;
+$bordeenfocado: #78289C;
+$bordeBS: #C0C0C0;
+
+.alineado_derecha {
+    float: right;
+}
+
+.alineado_izquierda {
+    float: left;
+}
+
+.derecha {
+    text-align: right;
+}
+
+.izquierda {
+    text-align: left;
+}
+
+.alinear_izquierda {
+    margin-left: 2px;
+    float: left;
+}
+
+.alinear_derecha {
+    margin-right: 2px;
+    float: right;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.span_derecha {
+    text-align: right;
+}
+
+.span_izquierda {
+    text-align: left;
+}
+
+.span_centrado {
+    text-align: center;
+}
+
+.ancho100porcentaje {
+    width: 100%;
+}
+
+#principal {
+    vertical-align: top;
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    &:not(.es_span) {
+        overflow: hidden;
+    }
+    max-width: 100%;
+}
+
+#contenedor {
+    position: relative;
+    box-sizing: border-box;
+    &:not(.contiene_select) {
+        padding: 4px;
+    }
+    &.contiene_select {
+        padding: 2px;
+    }
+    margin: 0;
+    &:not(.estiloBS) {
+        margin-top: 6px;
+    }
+    &.estiloBS {
+        padding: 0;
+    }
+    display: block;
+    max-width: 100%;
+    &.estilorecuadro {
+        border: 2px solid $bordenada;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        background-color: white;
+    }
+    &.estiloBS {
+        border: 1px solid $bordeBS;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        background-color: white;
+    }
+    &.estilorecuadro_izquierdo {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        border-left: 2px solid $bordenada;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        background-color: white;
+    }
+    &.estilorecuadro_derecho {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        border-right: 2px solid $bordenada;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        background-color: white;
+    }
+    &.estilorecuadro_centro {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        background-color: white;
+    }
+    &.estilonormal {
+        padding-left: 2px;
+        border-bottom: 2px solid $bordenada;
+    }
+    &.estilofill {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom: 2px solid $bordenada;
+        background-color: $fondofill;
+    }
+    //    transition: background-color 0.3s, border 0.3s;
+    &.enfocado,
+    &.escrito {
+        &.estilorecuadro {
+            border: 2px solid $bordeenfocado;
+        }
+        &.estiloBS {
+            border: 1px solid $bordeBS;
+        }
+        &.estilorecuadro_izquierdo {
+            border-top: 2px solid $bordeenfocado;
+            border-bottom: 2px solid $bordeenfocado;
+            border-left: 2px solid $bordeenfocado;
+        }
+        &.estilorecuadro_centro {
+            border-top: 2px solid $bordeenfocado;
+            border-bottom: 2px solid $bordeenfocado;
+        }
+        &.estilorecuadro_derecho {
+            border-top: 2px solid $bordeenfocado;
+            border-bottom: 2px solid $bordeenfocado;
+            border-right: 2px solid $bordeenfocado;
+        }
+        &.estilonormal,
+        &.estilofill {
+            border-bottom: 2px solid $bordeenfocado;
+        }
+        #etiqueta {
+            height: 12px;
+            &.estilorecuadro {
+                background-color: white;
+                border: 1px solid $bordeenfocado;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            &.estiloBS {
+                background-color: white;
+                border: 1px solid $bordeBS;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            &.estilorecuadro_izquierdo {
+                background-color: white;
+                border: 1px solid $bordeenfocado;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            &.estilorecuadro_centro {
+                background-color: white;
+                border: 1px solid $bordeenfocado;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            &.estilorecuadro_derecho {
+                background-color: white;
+                border: 1px solid $bordeenfocado;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            font-size: 0.75em;
+            font-weight: 800;
+            top: -8px;
+            left: 3px;
+            color: $bordeenfocado;
+            span {
+                margin-top: 0px;
+            }
+        }
+    }
+    &:hover {
+        &:not(.enfocado) {
+            &.estilorecuadro {
+                border: 2px solid $bordehover;
+            }
+            &.estiloBS {
+                border: 1px solid $bordeBS;
+            }
+            &.estilorecuadro_izquierdo {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+                border-left: 2px solid $bordehover;
+            }
+            &.estilorecuadro_centro {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+            }
+            &.estilorecuadro_derecho {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+                border-right: 2px solid $bordehover;
+            }
+            &.estilonormal,
+            &.estilofill {
+                border-bottom: 2px solid $bordehover;
+            }
+        }
+    }
+    #etiqueta {
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 1em;
+        position: absolute;
+        color: black;
+        top: 5px;
+        left: 10px;
+        transition: top 0.3s, left 0.3s, font-size 0.3s, border 0.3s;
+        span {
+            display: block;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+    }
+    #texto {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        max-width: calc(100% - 10px);
+        &:not(.es_span) {
+            overflow: hidden;
+        }
+        input {
+            max-width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0);
+            border: 0;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+#errores {
+    display: block;
+    margin: 0;
+    font-size: 0.75em;
+    overflow: hidden;
+    padding-left: 2px;
+    padding: 0;
+    height: 10px;
+    #spanerror {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        margin: 0;
+        margin-top: -5px;
+        color: red;
+    }
+    #spanmensaje {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        margin: 0;
+        margin-top: -5px;
+        color: $bordeenfocado;
+    }
+}
+
+.escrito {
+    background-color: rgba(0, 0, 0, 0);
+    /* cuando tiene algo escrito */
+}
+
+.enfocado {
+    background-color: rgba(0, 0, 0, 0);
+    /* cuando tiene algo escrito */
+}
+
+.btn_calenario {
+    display: inline-block;
+    border-radius: 40%;
+    border: 1px solid black;
+    background-color: grey;
+    width: 10px;
+    height: 10px;
+    &:hover {
+        border-color: blue;
+        background-color: green;
+    }
+}
+
+#calendario {
+    position: fixed;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 230px;
+    height: 270px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: white;
+    z-index: 100;
+    padding: 10px;
+}
+
+.cabecera_calendario {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+    border: none;
+}
+
+.calendario_td {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+}
+
+.es_otro_mes {
+    color: grey;
+    background-color: #ddd
+}
+
+.es_hoy {
+    border: 1px solid gray;
+}
+
+.seleccionado {
+    border: 1px solid black;
+    background-color: royalblue;
+    color: white;
+}
+
+.no_seleccionado {
+    color: black;
+    &:hover {
+        background-color: lightblue;
+    }
+}
+
+.imagen_calendario {
+    width: 15px;
+    height: 15px;
+}
+
+.select_comun {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    appearance: none;
+    padding-left: 3px;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+.select_comun::-ms-expand {
+    display: none;
+}
+
+.anchototal {
+    width: 100%;
+}
+
+#mispan {
+    position: relative;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0;
+    margin-top: 6px;
+    display: block;
+    max-width: 100%;
+    &.estilorecuadro {
+        border: 2px solid $bordenada;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        background-color: white;
+    }
+    &.estiloBS {
+        border: 1px solid $bordeBS;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        background-color: white;
+    }
+    &.estilorecuadro_izquierdo {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        border-left: 2px solid $bordenada;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        background-color: white;
+    }
+    &.estilorecuadro_derecho {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        border-right: 2px solid $bordenada;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        background-color: white;
+    }
+    &.estilorecuadro_centro {
+        border-top: 2px solid $bordenada;
+        border-bottom: 2px solid $bordenada;
+        background-color: white;
+    }
+    &.estilonormal {
+        padding-left: 2px;
+        border-bottom: 2px solid $bordenada;
+    }
+    &.estilofill {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom: 2px solid $bordenada;
+        background-color: $fondofill;
+    }
+    &.estilorecuadro {
+        border: 2px solid $bordeenfocado;
+    }
+    &.estiloBS {
+        border: 1px solid $bordeBS;
+    }
+    &.estilorecuadro_izquierdo {
+        border-top: 2px solid $bordeenfocado;
+        border-bottom: 2px solid $bordeenfocado;
+        border-left: 2px solid $bordeenfocado;
+    }
+    &.estilorecuadro_centro {
+        border-top: 2px solid $bordeenfocado;
+        border-bottom: 2px solid $bordeenfocado;
+    }
+    &.estilorecuadro_derecho {
+        border-top: 2px solid $bordeenfocado;
+        border-bottom: 2px solid $bordeenfocado;
+        border-right: 2px solid $bordeenfocado;
+    }
+    &.estilonormal,
+    &.estilofill {
+        border-bottom: 2px solid $bordeenfocado;
+    }
+    &:hover {
+        &:not(.enfocado) {
+            &.estilorecuadro {
+                border: 2px solid $bordehover;
+            }
+            &.estiloBS {
+                border: 1px solid $bordeBS;
+            }
+            &.estilorecuadro_izquierdo {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+                border-left: 2px solid $bordehover;
+            }
+            &.estilorecuadro_centro {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+            }
+            &.estilorecuadro_derecho {
+                border-top: 2px solid $bordehover;
+                border-bottom: 2px solid $bordehover;
+                border-right: 2px solid $bordehover;
+            }
+            &.estilonormal,
+            &.estilofill {
+                border-bottom: 2px solid $bordehover;
+            }
+        }
+    }
+}
+
+.fuente_modo_celular {
+    font-size: smaller;
+}
+
+.caja_contenedora_texto {
+    display:inline-block;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border:1px solid black;
+    background-color: white;
+    &.seleccionado {
+        border:1px solid brown;
+        box-shadow: 2px 2px 6px #9900FF;
+        background-color:deepskyblue
+    }
+    &.tamanio2_5 {
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+        height: 64px;
+    }
+    &.tamanio3 {
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        height: 94px;
+    }
+    &.texto_centrado {
+        text-align: center;
+    }
+}
+
+.caja_menu_item_dos_lineas {
+    border: 1px solid #000;
+    background-color: #FFA07A;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    height: 34px;
+    display: inline-block;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    align-items: left;
+    align-content: left;
+    span {
+        display:block;
+        height: 14px;
+        text-align: left;
+        float: left;
+        padding-left: 5px;
+        font-size: 13px;
+        padding-top: 3px;
+        line-height: 13px;
+    }
+}

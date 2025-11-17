@@ -1,0 +1,90 @@
+$bg: #0b0c10;
+$panel: #111318;
+$fg: #e7e9ee;
+$muted: #a3a7b3;
+$ok: #2ecc71;
+$warn: #f39c12;
+$idle: #7f8c8d;
+$border: rgba(255,255,255,0.06);
+$shadow: 0 10px 30px rgba(0,0,0,0.45);
+@use "sass:color";
+
+.upd-overlay {
+  position: fixed; inset: 0; z-index: 3201;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.55), rgba(0,0,0,0.85));
+  display: grid; place-items: center; padding: 24px;
+  color: $fg; font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.sombra { box-shadow: $shadow; }
+
+.upd-panel {
+  width: min(720px, 96vw); background: $panel; border: 1px solid $border; border-radius: 16px;
+  padding: 8px 16px 16px; outline: none;
+}
+
+.upd-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0 12px;
+  border-bottom: 1px solid $border;
+  h2 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: .2px; }
+}
+
+.upd-title-wrap { display: inline-flex; align-items: center; gap: 10px; }
+.upd-icon { font-size: 20px; opacity: .9; transform: rotate(0deg); animation: spin 1.6s linear infinite; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+.btn-close {
+  appearance: none; border: 0; background: transparent; color: $muted; font-size: 22px; line-height: 1;
+  padding: 2px 6px; cursor: pointer; border-radius: 8px;
+  &:hover { background: rgba(255,255,255,0.06); color: $fg; }
+}
+
+.upd-block { padding: 14px 0 4px; }
+
+.upd-list { display: grid; gap: 8px; padding: 8px 0 6px; max-height: 44vh; overflow: auto; }
+
+.upd-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(255,255,255,0.02); border: 1px solid $border; border-radius: 12px; padding: 10px 12px;
+}
+
+.upd-label { color: $muted; }
+
+.upd-name { display: inline-flex; align-items: center; gap: 10px; }
+
+.dot {
+  width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: $idle; box-shadow: 0 0 0 0 rgba(255,255,255,0);
+  &.dot-running { background: $warn; animation: pulse 1.2s ease-in-out infinite; }
+  &.dot-done { background: $ok; }
+}
+
+@keyframes pulse { 0%{ box-shadow:0 0 0 0 rgba(243,156,18,.5);} 70%{ box-shadow:0 0 0 8px rgba(243,156,18,0);} 100%{ box-shadow:0 0 0 0 rgba(243,156,18,0);} }
+
+.badge {
+  display: inline-flex; align-items: center; justify-content: center; padding: 2px 10px; border-radius: 999px;
+  font-weight: 600; font-size: 12px; letter-spacing: .2px; border: 1px solid $border; color: $fg; background: rgba(255,255,255,0.04);
+  &.badge-ok   { background: rgba($ok,.15);   border-color: rgba($ok,.25);   color: color.adjust($ok, $lightness: 10%); }
+  &.badge-warn { background: rgba($warn,.15); border-color: rgba($warn,.25); color: color.adjust($warn, $lightness: 10%); }
+  &.badge-idle { background: rgba($idle,.15); border-color: rgba($idle,.25); color: color.adjust($idle, $lightness: 10%); }
+}
+
+.upd-progress { padding-top: 6px; }
+.progress-head { display: flex; align-items: center; justify-content: space-between; color: $muted; font-size: 12px; margin-bottom: 6px; }
+.bar { height: 10px; background: rgba(255,255,255,0.06); border: 1px solid $border; border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4facfe, #00f2fe); border-right: 1px solid rgba(255,255,255,0.35); transition: width .35s ease; }
+.progress-foot { color: $muted; font-size: 12px; margin-top: 6px; }
+
+.upd-footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 12px; border-top: 1px solid $border; margin-top: 12px; }
+
+.btn {
+  appearance: none; border: 1px solid $border; background: rgba(255,255,255,0.04); color: $fg; padding: 8px 14px; border-radius: 10px;
+  font-weight: 600; letter-spacing: .2px; cursor: pointer;
+  &:disabled { opacity: .5; cursor: not-allowed; }
+  &.ghost:hover { background: rgba(255,255,255,0.06); }
+  &.primary { background: #2d6cdf; border-color: rgba(45,108,223,.6); }
+  &.primary:hover { filter: brightness(1.05); }
+}
+
+// Scroll sutil en listas largas
+.upd-list::-webkit-scrollbar { height: 10px; width: 10px; }
+.upd-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }

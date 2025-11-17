@@ -1,0 +1,18 @@
+<div id="principal" [style.height.px]="altoprincipal" style="padding-top:1px" (click)="enfocartext()">
+    <div id="contenedor" [style.height.px]="alto-1" [style.width]=estilo_ancho [style.max-width]=estilo_ancho_maximo [ngClass]="{'enfocado':focused,'escrito':esta_escrito(),'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+        <div id="etiqueta" *ngIf="titulo.length>0" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+            <span>{{titulo}}</span>
+        </div>
+        <div id="texto" style="width: 100%;">
+            <input *ngIf="!TipoPassword" type="text" [ngClass]="{'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3,'enfocado':focused}" [attr.placeholder]="placeholder" [disabled]="disabled" [(ngModel)]="inputModel" (ngModelChange)="f_cambio()" (focus)="enfocado()"
+                (blur)="sin_foco()" [style.width]="'calc(100% - 2px)'" #numericInput (keydown)="control_cambio($event)" />
+            <input *ngIf="TipoPassword" type="password" [ngClass]="{'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3,'enfocado':focused}" [attr.placeholder]="placeholder" [disabled]="disabled" [(ngModel)]="inputModel" (ngModelChange)="f_cambio()" (focus)="enfocado()"
+                (blur)="sin_foco()" [style.width]="'calc(100% - 2px)'" #numericInput (keydown)="control_cambio($event)" />
+
+        </div>
+    </div>
+    <div id="errores">
+        <span id="spanerror" *ngIf="MostrarErrores && ConError">{{ErrorTexto}}</span>
+        <span id="spanmensaje" *ngIf="Mensaje.length>0 && (!MostrarErrores || !ConError)">{{Mensaje}}</span>
+    </div>
+</div>

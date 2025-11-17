@@ -1,0 +1,55 @@
+<!-- Overlay a pantalla completa -->
+<div class="upd-overlay" role="dialog" aria-modal="true" aria-labelledby="upd-title">
+  <section class="upd-panel sombra" tabindex="-1">
+    <!-- Header -->
+    <header class="upd-header">
+      <div class="upd-title-wrap">
+        <span class="upd-icon" aria-hidden="true">⟳</span>
+        <h2 id="upd-title">Actualizando el sistema</h2>
+      </div>
+    </header>
+
+    <!-- Bloque "Chequeando actualizaciones" -->
+    <div class="upd-block">
+      <div class="upd-row">
+        <span class="upd-label">Chequeando actualizaciones</span>
+        <span class="badge" [class.badge-warn]="modo===0" [class.badge-ok]="modo>0" [class.badge-idle]="modo<0">
+          <ng-container *ngIf="modo===0">Buscando…</ng-container>
+          <ng-container *ngIf="modo>0">FINALIZADO</ng-container>
+          <ng-container *ngIf="modo<0">Pendiente</ng-container>
+        </span>
+      </div>
+    </div>
+
+    <!-- Lista de ítems -->
+    <div class="upd-list" role="status" aria-live="polite">
+      <div class="upd-row" *ngFor="let item of actualizaciones; index as i; trackBy: trackByNombre">
+        <div class="upd-name">
+          <span class="dot" [class.dot-pending]="item.estado==='Pendiente'"
+                           [class.dot-running]="item.estado==='Actualizando...'"
+                           [class.dot-done]="item.estado==='FINALIZADO'"></span>
+          <strong>{{ item.nombre }}</strong>
+        </div>
+        <span class="badge"
+              [class.badge-idle]="item.estado==='Pendiente'"
+              [class.badge-warn]="item.estado==='Actualizando...'"
+              [class.badge-ok]="item.estado==='FINALIZADO'">
+          {{ item.estado }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Progreso general -->
+    <div class="upd-progress" *ngIf="actualizaciones?.length">
+      <div class="progress-head">
+        <span>Progreso</span>
+        <span>{{ progresoCompletado }} / {{ actualizaciones.length }}</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" [style.width.%]="porcentajeProgreso"></div>
+      </div>
+      <div class="progress-foot" *ngIf="textoPie">{{ textoPie }}</div>
+    </div>
+
+  </section>
+</div>

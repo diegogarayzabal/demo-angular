@@ -1,0 +1,135 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item *ngIf="pantalla===0 && modificando_grupo_id>=0" (click)="modificando_nombre='';modificando_grupo_id=-1;pantalla=0.1;" [AlinearDerecha]="true" [EsImagen]="true" [ImagenAgregar]="true" [Titulo]="'Nuevo Grupo'" [FondoModificar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===1 && compartiendo_item===0" (click)="pantalla=0;" [AlinearIzquierda]="true" [EsImagen]="true" [ImagenBorrar]="true" [Titulo]="'Cancelar'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===1 && compartiendo_item>0" (click)="pantalla=2;" [AlinearIzquierda]="true" [EsImagen]="true" [ImagenBorrar]="true" [Titulo]="'Cancelar'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===1" (click)="compartir()" [AlinearDerecha]="true" [EsImagen]="true" [ImagenGuardar]="true" [Titulo]="'Confirmar'" [FondoConfirmar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===2" (click)="pantalla=0;" [AlinearIzquierda]="true" [EsImagen]="true" [ImagenRegresar]="true" [Titulo]="'Regresar'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===3" (click)="pantalla=2;" [AlinearIzquierda]="true" [EsImagen]="true" [ImagenRegresar]="true" [Titulo]="'Regresar'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===2 && (viendo_grupo.duenio>0 || viendo_grupo.modificable)" (click)="modificando_nombre='';modificando_item_id=-1;pantalla=2.1;" [AlinearDerecha]="true" [EsImagen]="true" [ImagenAgregar]="true" [Titulo]="'Nuevo item'" [FondoModificar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla===3 && (viendo_grupo.duenio>0 || viendo_item.modificable)" (click)="modificando_nombre='';modificando_subitem_id=-1;modificando_valor='';pantalla=3.1" [AlinearDerecha]="true" [EsImagen]="true" [ImagenAgregar]="true" [Titulo]="'Nuevo Subitem'" [FondoModificar]="true"></app-menu-item>
+    <span *ngIf="pantalla===0">GRUPOS</span>
+    <span *ngIf="pantalla===1 && compartiendo_item===0">COMPARTIENDO GRUPO: {{compartiendo_grupo_nombre}}</span>
+    <span *ngIf="pantalla===1 && compartiendo_item>0">GRUPO: {{compartiendo_grupo_nombre}}</span>
+    <br *ngIf="pantalla===1 && compartiendo_item>0">
+    <span *ngIf="pantalla===1 && compartiendo_item>0">COMPARTIENDO ITEM: {{compartiendo_item_nombre}}</span>
+    <span *ngIf="pantalla>1.1">GRUPO: {{viendo_grupo.nombre}}</span>
+    <br *ngIf="pantalla>2.1">
+    <span *ngIf="pantalla>2.1">ITEM: {{viendo_item.nombre}}</span>
+</div>
+<div class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--listado de grupos-->
+    <div *ngIf="pantalla===0" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila estilo_tabla tabla_cabecera">
+            <div style="width:50px;">Items</div>
+            <div style="width: calc(100% - 50px);">Grupo Nombre</div>
+        </div>
+        <div class="tabla_div_fila estilo_tabla" *ngFor="let item of recordatorios">
+            <div (click)="items_actualizar(item)" style="width:50px;">{{item.cantidad}}</div>
+            <div (click)="items_actualizar(item)" class="izquierda" style="width: calc(100% - 170px);">{{item.nombre}}</div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla *ngIf="item.duenio>0" (click)="grupo_compartir(item.id,item.nombre,0,'')" [Imagen]="'compartir.svg'" [Titulo]="'Compartir'"></app-imagen-opcion-en-tabla>
+                <app-imagen-opcion-en-tabla *ngIf="item.duenio===0" [Imagen]="'persona_contacto.svg'" [Titulo]="'Compartido por '+item.duenio_nombre"></app-imagen-opcion-en-tabla>
+            </div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla *ngIf="item.duenio>0" (click)="modificando_grupo_id=item.id;modificando_nombre=item.nombre;pantalla=0.1;" [ImagenModificar]="true" [Titulo]="'Modificar Nombre'"></app-imagen-opcion-en-tabla>
+            </div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla *ngIf="item.duenio>0" (click)="grupo_eliminar(item)" [ImagenBasurero]="true" [Titulo]="'Eliminar el grupo'"></app-imagen-opcion-en-tabla>
+            </div>
+        </div>
+    </div>
+    <!--abm grupos-->
+    <div *ngIf="pantalla===0.1" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila">
+            <app-texto [titulo]="'Nombre:'" [(inputModel)]="modificando_nombre" [ancho]="400"></app-texto>
+        </div>
+        <div class="tabla_div_fila">
+            <app-boton class="alinear_derecha" (enter)="grupo_modificar()" [titulo]="'GUARDAR'" [Tipo]=3 [MargenSuperior]=6></app-boton>
+            <app-boton class="alinear_izquierda" (enter)="pantalla=0" [titulo]="'CANCELAR'" [Rojo]="true" [MargenSuperior]=6></app-boton>
+        </div>
+    </div>
+    <!--compartiendo-->
+    <table *ngIf="pantalla===1" class="tabla_con_cabecera top_con_cabecera0 sombra-gris">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Usuario</b></th>
+                <th><b>Compartido</b></th>
+                <th><b>Modificar</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of compartidos" align=left>
+                <td><span>{{item.nombre}}</span></td>
+                <td align=center class="td_imagen_normal">
+                    <app-tildar [(inputModel)]="item.compartido"></app-tildar>
+                </td>
+                <td align=center class="td_imagen_normal">
+                    <app-tildar *ngIf="item.compartido" [(inputModel)]="item.compartido_modificable"></app-tildar>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--listado de items-->
+    <div *ngIf="pantalla===2" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila estilo_tabla tabla_cabecera">
+            <div style="width:50px;">Sub</div>
+            <div style="width: calc(100% - 50px);">Items Nombre</div>
+        </div>
+        <div class="tabla_div_fila estilo_tabla" *ngFor="let item of items">
+            <div (click)="subitems_actualizar(item)" style="width:50px;">{{item.cantidad}}</div>
+            <div (click)="subitems_actualizar(item)" class="izquierda" style="width: calc(100% - 170px);">{{item.nombre}}</div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla  *ngIf="viendo_grupo.duenio>0" (click)="grupo_compartir(viendo_grupo.id,viendo_grupo.nombre,item.id,item.nombre)" [Imagen]="'compartir.svg'" [Titulo]="'Compartir'"></app-imagen-opcion-en-tabla>
+                <app-imagen-opcion-en-tabla *ngIf="item.duenio===0" [Imagen]="'persona_contacto.svg'" [Titulo]="'Compartido por '+item.duenio_nombre"></app-imagen-opcion-en-tabla>
+            </div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla  *ngIf="viendo_grupo.duenio>0 || item.modificable" (click)="modificando_item_id=item.id;modificando_nombre=item.nombre;pantalla=2.1;" [ImagenModificar]="true" [Titulo]="'Modificar Nombre'"></app-imagen-opcion-en-tabla>
+            </div>
+            <div calss="derecha" style="width:40px;">
+                <app-imagen-opcion-en-tabla *ngIf="viendo_grupo.duenio>0 || item.modificable" (click)="item_eliminar(item)" [ImagenBasurero]="true" [Titulo]="'Eliminar el Item'"></app-imagen-opcion-en-tabla>
+            </div>
+        </div>
+    </div>
+    <!--abm items-->
+    <div *ngIf="pantalla===2.1" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila">
+            <app-texto [titulo]="'Nombre:'" [(inputModel)]="modificando_nombre" [ancho]="400"></app-texto>
+        </div>
+        <div class="tabla_div_fila">
+            <app-boton class="alinear_derecha" (enter)="item_modificar()" [titulo]="'GUARDAR'" [Tipo]=3 [MargenSuperior]=6></app-boton>
+            <app-boton class="alinear_izquierda" (enter)="pantalla=2" [titulo]="'CANCELAR'" [Rojo]="true" [MargenSuperior]=6></app-boton>
+        </div>
+    </div>
+    <!--listado de subitems-->
+    <div *ngIf="pantalla===3" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila estilo_tabla tabla_cabecera">
+            <div style="width: calc(50% - 30px);">Nombre</div>
+            <div style="width: calc(50% - 30px);">Valor</div>
+            <div style="width:60px;"></div>
+        </div>
+        <div class="tabla_div_fila estilo_tabla" *ngFor="let item of subitems">
+            <div class="izquierda" style="width: calc(50% - 30px);">{{item.nombre}}</div>
+            <div class="izquierda" style="width: calc(50% - 30px);">{{item.valor}}</div>
+            <div calss="derecha" style="width:30px;">
+                <app-imagen-opcion-en-tabla (click)="modificando_subitem_id=item.id;modificando_nombre=item.nombre;modificando_valor=item.valor;pantalla=3.1;" [ImagenModificar]="true" [Titulo]="'Modificar Nombre'"></app-imagen-opcion-en-tabla>
+            </div>
+            <div calss="derecha" style="width:30px;">
+                <app-imagen-opcion-en-tabla  (click)="subitem_eliminar(item)" [ImagenBasurero]="true" [Titulo]="'Eliminar el Subitem'"></app-imagen-opcion-en-tabla>
+            </div>
+        </div>
+    </div>
+    <!--abm subitems-->
+    <div *ngIf="pantalla===3.1" class="tabla_div forzar_celular" [ngClass]="{'sombra-azul':!G.modo_celular,'bordeyredondeado':!G.modo_celular}">
+        <div class="tabla_div_fila">
+            <app-texto [titulo]="'Nombre:'" [(inputModel)]="modificando_nombre" [ancho]="400"></app-texto>
+        </div>
+        <div class="tabla_div_fila">
+            <app-texto [titulo]="'Valor:'" [(inputModel)]="modificando_valor" [ancho]="400"></app-texto>
+        </div>
+        <div class="tabla_div_fila">
+            <app-boton class="alinear_derecha" (enter)="subitem_modificar()" [titulo]="'GUARDAR'" [Tipo]=3 [MargenSuperior]=6></app-boton>
+            <app-boton class="alinear_izquierda" (enter)="pantalla=3" [titulo]="'CANCELAR'" [Rojo]="true" [MargenSuperior]=6></app-boton>
+        </div>
+    </div>
+</div>
+<ng-template #contenedorConfirmacion></ng-template>

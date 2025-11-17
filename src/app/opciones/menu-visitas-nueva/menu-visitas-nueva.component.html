@@ -1,0 +1,30 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [EsImagen]="false" [Titulo]="'NUEVA VISITA'" [Negrita]="true" [LetraGrande]="true" [FondoVerde]="true" [Efectos]="false"></app-menu-item>
+    <app-menu-item *ngIf="Funcion.permitido('personas_abm')" (click)="persona_modo_abm=true;" [EsImagen]="false" [AlinearDerecha]="true" [FondoModificar]="true" [Titulo]="'NUEVA PERSONA'"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [hidden]="persona_modo_abm" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <div class="div_filtro sombra-verde" [style.width.px]="800">
+        <div class="div_filtro_fila sin_altura">
+            <div>
+                <app-select-especial [titulo]="'Visitante: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="persona" [borrable]="true"></app-select-especial>
+            </div>
+        </div>
+        <div class="div_filtro_fila sin_altura">
+            <div>
+                <app-select-especial [titulo]="'Area: '" [mostrar_titulo]="true" [datos]="G.areas" [(inputModel)]="area"></app-select-especial>
+            </div>
+        </div>
+        <div class="div_filtro_fila sin_altura">
+            <div>
+                <app-textarea [(inputModel)]="motivo" [ancho]="780" [alto]="150" [titulo]="'Motivo de la visita:'"></app-textarea>
+            </div>
+        </div>
+        <div class="div_filtro_fila">
+            <div>
+                <app-boton class="alinear_derecha" [Azul]="true" [titulo]="'CONFIRMAR'" [ancho]="200" (click)="f_guardar()"></app-boton>
+            </div>
+        </div>
+    </div>
+</div>
+<app-abmpersona *ngIf="persona_modo_abm" [estemenu]="estemenu" (volver)="f_regreso_del_abm($event)"></app-abmpersona>
+<ng-template #contenedorConfirmacion></ng-template>

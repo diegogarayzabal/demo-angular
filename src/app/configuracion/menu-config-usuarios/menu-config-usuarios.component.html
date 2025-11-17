@@ -1,0 +1,82 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item *ngIf="pantalla==='listado_usuarios' && G.login_usuario===1" (click)="f_migrar()" [AlinearIzquierda]="true" [ImagenRenovar]="true" [Titulo]="'Migrar permisos'"></app-menu-item>
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="'Usuarios del Sistema'" [EsImagen]="false" [Negrita]="true" [FondoVerde]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='asignando_permisos'" [AlinearIzquierda]="true" [Titulo]="'PERMISOS'" [EsImagen]="false" [Negrita]="true"></app-menu-item>
+
+    <app-menu-item *ngIf="pantalla==='nuevo_usuario'" (click)="pantalla='listado_usuarios';" [AlinearIzquierda]="true" [Titulo]="'Cancelar'" [ImagenBorrar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='asignando_permisos'" (click)="f_cancelar_permisos()" [AlinearIzquierda]="true" [Titulo]="'Regresar'" [ImagenRegresar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='listado_usuarios' && f_usuarios_tildados()>0" (click)="f_permisos()" [AlinearDerecha]="true" [EsImagen]="false" [Titulo]="'PERMISOS'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='listado_usuarios'" (click)="usuario.cuil=null;usuario.nombre='';pantalla='nuevo_usuario';usuario.mostrar_nombre=false;" [AlinearDerecha]="true" [Imagen]="'persona_agregar.svg'" [Titulo]="'Agregar un usuario nuevo'"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='nuevo_usuario' && usuario.nombre.length>0" (click)="nuevo()" [AlinearDerecha]="true" [Titulo]="'Confirmar los datos'" [ImagenGuardar]="true" [FondoConfirmar]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='asignando_permisos'" (click)="confirmar_permitidos()" [AlinearDerecha]="true" [Titulo]="'GUARDAR LOS PERMISOS'" [FondoVerde]="true" [EsImagen]="false" [Efectos]="true"></app-menu-item>
+    <app-menu-item *ngIf="pantalla==='asignando_permisos'" (click)="f_copiar_permisos()" [AlinearDerecha]="true" [Titulo]="'COPIAR LOS PERMISOS DE UN USUARIO'" [FondoCeleste]="true" [EsImagen]="false" [Efectos]="true"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--listado de usuarios-->
+    <table *ngIf="pantalla==='listado_usuarios'" class="tabla_con_cabecera top_con_cabecera0" [ngClass]="{'ancho-porcentaje-100':G.modo_celular}">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><app-imagen-opcion-en-tabla [ImagenAgregar]="true" [Titulo]="'Tildar o destildar todo'" (click)="f_tildar_usuarios()"></app-imagen-opcion-en-tabla></th>
+                <th><b>CUIL</b></th>
+                <th><b>NOMBRE</b></th>
+                <th><b>Correo Electrónico</b></th>
+                <th><b></b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios" align=left>
+                <td><app-tildar [(inputModel)]="usuario.tildado" [estilo_tilde]="true" align="center"></app-tildar></td>
+                <td (click)="usuario.tildado=!usuario.tildado" class="al_medio" align=center>{{usuario.cuil}}</td>
+                <td (click)="usuario.tildado=!usuario.tildado" class="al_medio">{{usuario.nombre}}</td>
+                <td (click)="usuario.tildado=!usuario.tildado" class="al_medio">{{usuario.mail}}</td>
+                <td align=center>
+                    <app-imagen-opcion-en-tabla *ngIf="usuario.id!=G.login_usuario" (click)="eliminar(usuario)" [ImagenBasurero]="true" [Titulo]="'Eliminar el usuario'"></app-imagen-opcion-en-tabla>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="pantalla==='nuevo_usuario'" class="div_abm sombra-azul div_abm_top_con_cabecera0 ancho-500">
+        <table class="tabla_abm">
+            <thead>
+                <tr><th colspan=2>NUEVO USUARIO</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ancho_variable ancho-50">CUIT: </td>
+                    <app-numero class="alinear_izquierda" (inputModelChange)="chequear_usuario()" [(inputModel)]="usuario.cuil" [decimales]=0 [ancho]=120 [titulo]='' [alinear]=3 [min]=20000000000 [max]=39999999999 [ConFormato]=0></app-numero>
+                </tr>
+                <tr *ngIf="usuario.mostrar_nombre">
+                    <td class="ancho_variable">Nombre: </td>
+                    <td>
+                        <app-span [ancho]="400" [texto]="usuario.nombre"></app-span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--habilitando permisos-->
+    <table *ngIf="pantalla==='asignando_permisos'" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0" style="max-height: 100px;">
+                <th rowspan=2 align="left" valign="top"><b>Permiso</b></th>
+                <th *ngFor="let usr of usuarios_permitiendo" style="writing-mode: vertical-lr;transform: rotate(180deg);max-height: 100px;min-width: 50px;"><b>{{usr.nombre}}</b></th>
+            </tr>
+            <tr class="th_top_con_cabecera0">
+                <th *ngFor="let usr of usuarios_permitiendo" align=center>
+                    <app-imagen-opcion-en-tabla [ImagenChequeado]="true" (click)="chequear_todos(usr.id)" [Titulo]="'Seleccionar todo'"></app-imagen-opcion-en-tabla>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let permiso of permisos_visibles" align=left>
+                <td>{{permiso.permiso_nombre}}</td>
+                <td align=center *ngFor="let usr of usuarios_permitiendo" (click)="f_tildar(permiso.permiso,usr.id)">
+                    <app-imagen-opcion-en-tabla *ngIf="f_mostrar_permitido(permiso.permiso,usr.id)===1" [Imagen]="'tilde.svg'"></app-imagen-opcion-en-tabla>
+                    <app-imagen-opcion-en-tabla *ngIf="f_mostrar_permitido(permiso.permiso,usr.id)===-1" [ImagenBorrar]="true"></app-imagen-opcion-en-tabla>
+                    <app-imagen-opcion-en-tabla *ngIf="f_mostrar_permitido(permiso.permiso,usr.id)===2" [Imagen]="'tilde_doble.svg'"></app-imagen-opcion-en-tabla>
+                </td>
+            </tr>
+        </tbody>
+    </table>       
+</div>
+<ng-template #contenedorConfirmacion></ng-template>

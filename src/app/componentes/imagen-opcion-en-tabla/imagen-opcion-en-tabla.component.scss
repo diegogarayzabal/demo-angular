@@ -1,0 +1,134 @@
+.tamanio1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    img {
+        width: 15px;
+        height: 15px;
+        &.ampliar {
+            transition: 0.5s;
+        }
+        &:not(.ampliar) {
+            width: 20px;
+            height: 20px;
+        }
+        &.ampliar:hover {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.tamanio2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    img {
+        width: 20px;
+        height: 20px;
+        &.ampliar {
+            transition: 0.5s;
+        }
+        &:not(.ampliar) {
+            width: 25px;
+            height: 25px;
+        }
+        &.ampliar:hover {
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+
+.tamanio3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    img {
+        width: 25px;
+        height: 25px;
+        &.ampliar {
+            transition: 0.5s;
+        }
+        &:not(.ampliar) {
+            width: 30px;
+            height: 30px;
+        }
+        &.ampliar:hover {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.tamanio4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    img {
+        width: 30px;
+        height: 30px;
+        &.ampliar {
+            transition: 0.5s;
+        }
+        &:not(.ampliar) {
+            width: 35px;
+            height: 35px;
+        }
+        &.ampliar:hover {
+            width: 35px;
+            height: 35px;
+        }
+    }
+}
+
+.izquierda { float:left; margin-left:2px; }
+.derecha {float:right; margin-right:2px;}
+
+.fondo_azul {
+    background-color: royalblue;
+}
+
+.fondo_rojo {
+    background-color: crimson;
+}
+
+.fondo_verdeclaro {
+    background-color: greenyellow;
+}
+
+.fondo_celeste {
+    background-color: skyblue;
+}
+
+.fondo_gris_claro {
+    background-color: lightgray;
+}
+
+.fondo_naranja {
+    background-color: lightsalmon;
+}
+
+.fondo_verde {
+    background-color: yellowgreen;
+}
+
+.fondo_blanco {
+    background-color: white;
+}
+
+.con_recuadro {
+    border: 1px solid black;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+

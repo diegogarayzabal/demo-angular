@@ -1,0 +1,176 @@
+$colormenu: #bac2d1;
+$colorsubmenu1: chocolate;
+$colorsubmenu2: darkseagreen;
+$colorborde1: rgb(49, 24, 5);
+
+.barra_lateral_arriba {
+    position: fixed;
+    z-index: 3200;
+    top:0;
+    left:0;
+    width:40px;
+    height:40px;
+    &.sin_imagen {
+        width:100px;
+    }
+    background-color: $colormenu;
+    padding-top:2px;
+}
+
+.barra_lateral_abajo {
+    position: fixed;
+    z-index: 3201;
+    bottom:0;
+    left:0;
+    width:40px;
+    height:40px;
+    &.sin_imagen {
+        height:100px;
+        width:100px;
+    }
+    background-color: $colormenu;
+    padding:2px;
+}
+
+.barra_lateral {
+    position: fixed;
+    z-index: 3200;
+    top:40px;
+    left:0;
+    width:40px;
+    height: calc(100vw - 80px);
+    background-color: $colormenu;
+    padding-top:2px;
+    box-sizing: border-box;
+    &.abierto {
+        &:not(.sin_imagen) {
+            width:200px;
+        }
+        &.sin_imagen {
+            width:100px;
+            height: calc(100vw - 140px);
+        }
+    }
+}
+
+.barra_lateral_item1 {
+    height: 40px;
+    padding-left: 2px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    img {
+        width:32px;
+        height: 32px;
+    }
+    &:hover {
+        &:not(.tildado) {
+            background-color: aquamarine;
+        }
+    }
+    &.mostrando_menu {
+        border-right: solid 1px $colorborde1;
+    }
+    border-left: solid 1px $colormenu;
+    border-top: solid 1px $colormenu;
+    border-bottom: solid 1px $colormenu;
+    &.tildado {
+        background-color: $colorsubmenu1;
+        border-right: solid 1px $colorsubmenu1;
+        border-left: solid 1px $colorborde1;
+        border-top: solid 1px $colorborde1;
+        border-bottom: solid 1px $colorborde1;
+    }
+}
+
+.barra_lateral_sin_nada {
+    width:40px;
+    &.mostrando_menu {
+        border-right: solid 1px $colorborde1;
+        width:200px;
+    }
+}
+
+.barra_lateral_submenu1 {
+    position: fixed;
+    z-index: 3200;
+    left:220px;
+    &.sin_imagen {
+        left:120px;
+    }
+    width:200px;
+    background-color: $colorsubmenu1;
+    border:1px solid black;
+}
+
+.barra_lateral_subitem1 {
+    height: 40px;
+    padding-left: 4px;
+    padding-top: 4px;
+    box-sizing: border-box;
+    &:hover {
+        &:not(.tildado) {
+            background-color: aquamarine;
+        }
+    }
+    &.mostrando_submenu2 {
+        border-right: solid 1px $colorborde1;
+    }
+    border-left: solid 1px $colorsubmenu1;
+    border-top: solid 1px $colorsubmenu1;
+    border-bottom: solid 1px $colorsubmenu1;
+    &.tildado {
+        background-color: $colorsubmenu2;
+        border-right: solid 1px $colorsubmenu2;
+        border-left: solid 1px $colorsubmenu2;
+        border-top: solid 1px $colorsubmenu2;
+        border-bottom: solid 1px $colorsubmenu2;
+    }
+    display: flex;
+    align-items: center;
+    span {
+        display: block;
+        width: 100%;
+    }
+    &.es_submenu {
+        font-weight: bold;
+        text-align: center;
+    }
+}
+
+.barra_lateral_submenu2 {
+    position: fixed;
+    z-index: 3200;
+    left:440px;
+    &.sin_imagen {
+        left:340px;
+    }
+    width:200px;
+    background-color: $colorsubmenu2;
+    border:1px solid black;
+}
+
+.barra_lateral_subitem2 {
+    height: 40px;
+    padding-left: 4px;
+    padding-top: 4px;
+    box-sizing: border-box;
+    &:hover {
+        background-color: aquamarine;
+    }
+    display: flex;
+    align-items: center;
+    span {
+        display: block;
+        width: 100%;
+    }
+}
+
+.barra_lateral_menu_seleccionado {
+    position: fixed;
+    z-index: 3200;
+    width: 0; 
+    height: 0; 
+    border-right: 20px solid black;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+}

@@ -1,0 +1,59 @@
+.mensajes-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mensaje {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    word-wrap: break-word;
+    text-align: left; /* Asegura alineación del texto */
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between; /* Distribuye texto y botón */
+    align-items: center; /* Centra verticalmente */
+  
+    &.exito {
+      border-color: #4caf50;
+      background-color: #e8f5e9;
+    }
+  
+    &.error {
+      border-color: #f44336;
+      background-color: #ffebee;
+    }
+  
+    &.informacion {
+      border-color: #2196f3;
+      background-color: #e3f2fd;
+    }
+  
+    &.advertencia {
+      border-color: #ff9800;
+      background-color: #fff3e0;
+    }
+  
+    button {
+      margin-left: 10px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s ease;
+  
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+  

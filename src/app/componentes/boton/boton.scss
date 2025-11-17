@@ -1,0 +1,92 @@
+.comunes {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid;
+    cursor: pointer;
+    outline: none;
+}
+
+.azul {
+    border-color: blue;
+    background-color: #6699FF;
+    color: white;
+    box-shadow: 0px 0px 5px blue;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    &:hover {
+        background-color: #6633FF;
+        box-shadow: 0px 0px 10px blue;
+    }
+    &:active {
+        box-shadow: 0px 0px 15px blue;
+        background-color: #6600CC;
+        transform: scale(0.95);
+    }
+}
+
+.gris {
+    border-color: grey;
+    background-color: gainsboro;
+    color: white;
+    box-shadow: 0px 0px 5px grey;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    &:hover {
+        background-color: #333;
+        box-shadow: 0px 0px 10px grey;
+    }
+    &:active {
+        box-shadow: 0px 0px 15px grey;
+        background-color: gainsboro;
+        transform: scale(0.95);
+    }
+}
+
+.rojo {
+    border-color: red;
+    background-color: #FF6666;
+    color: white;
+    box-shadow: 0px 0px 5px red;
+    transition: background-color 0.5s, box-shadow 0.5s, transform 0.2s;
+    &:hover {
+        background-color: #CC3333;
+        box-shadow: 0px 0px 10px red;
+    }
+    &:active {
+        box-shadow: 0px 0px 15px red;
+        background-color: #CC0000;
+        transform: scale(0.95);
+    }
+}
+
+.naranja {
+    border-color: orangered;
+    background-color: orange;
+    color: white;
+    box-shadow: 0px 0px 5px orangered;
+    transition: background-color 0.5s, box-shadow 0.5s, transform 0.2s;
+    &:hover {
+        background-color: orange;
+        box-shadow: 0px 0px 10px orangered;
+    }
+    &:active {
+        box-shadow: 0px 0px 15px orangered;
+        background-color: orange;
+        transform: scale(0.95);
+    }
+}
+
+.verde {
+    border-color: green;
+    background-color: #60c260;
+    color: white;
+    box-shadow: 0px 0px 5px green;
+    transition: background-color 0.5s, box-shadow 0.5s, transform 0.2s;
+    &:hover {
+        background-color: #60c260;
+        box-shadow: 0px 0px 10px green;
+    }
+    &:active {
+        box-shadow: 0px 0px 15px green;
+        background-color: #60c260;
+        transform: scale(0.95);
+    }
+}

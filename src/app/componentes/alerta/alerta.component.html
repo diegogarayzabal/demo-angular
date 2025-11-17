@@ -1,0 +1,19 @@
+<div *ngIf="alerta_ver" style="position: fixed;top: 0px;left: 0px;height: 100vh;width: 100vw;margin: 0;z-index: 3201;filter: alpha(opacity=65);-moz-opacity: 65;opacity: 0.65;background-color: gray;">
+</div>
+<div class="Alerta" *ngIf="alerta_ver">
+    <div [ngClass]="{'sombra-negra':tipo===0,'sombra-roja':tipo===1}">
+        <span>{{mensaje}}</span>
+        <hr>
+        <div *ngIf="tipo===0">
+            <button type="button" class="btn btn-primary" #boton_ok (click)="cerrar()">ACEPTAR</button>
+        </div>
+        <div *ngIf="tipo===1">
+            <img src="assets/error.svg" style="width: 45px;">
+            <button type="button" class="btn btn-danger" #boton_ok (click)="cerrar()">ERROR</button>
+        </div>
+        <div *ngIf="tipo===2">
+            <img src="assets/atencion4.svg" style="width: 45px;">
+            <button type="button" class="btn btn-warning" #boton_ok (click)="cerrar()">ATENCIÓN</button>
+        </div>
+    </div>
+</div>

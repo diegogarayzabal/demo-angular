@@ -1,0 +1,15 @@
+<div id="principal" [style.height.px]="altoprincipal" style="padding-top:1px" [style.width.px]="anchocaja" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda}" (click)="enfocartext()">
+    <div id="contenedor" [style.height.px]="alto-1" [style.width.px]="anchocaja" [ngClass]="{'enfocado':focused,'escrito':esta_escrito(),'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+        <div id="etiqueta" *ngIf="titulo.length>0 && debe_mostrar_titulo" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+            <span>{{titulo}}</span>
+        </div>
+        <div id="texto" [ngClass]="{'alinear_derecha':alinear===1,'span_centrado':alinear===3}">
+            <input type="text" tabindex="0" class="enfocado" [ngClass]="{'derecha':alinear===1,'izquierda':alinear===2,'centrado':alinear===3}" [attr.placeholder]="placeholder" [disabled]="disabled" [style.width.px]="ancho" [(ngModel)]="valor_editando" (blur)="sin_foco()"
+                (keydown)="handleKeyDown($event)" (change)="f_cambio_numero()" (focus)="enfocado()" #numericInput />
+        </div>
+    </div>
+    <div id="errores">
+        <span id="spanerror" *ngIf="MostrarErrores && ConError">{{ErrorTexto}}</span>
+        <span id="spanmensaje" *ngIf="Mensaje.length>0 && (!MostrarErrores || !ConError)">{{Mensaje}}</span>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div *ngIf="estilo===1" (click)="cambio()" #DivContenedor [style.width.px]="ancho" [style.height.px]="ancho" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda}">
+    <app-imagenes [imagen]="'chequeado_si'" [tildado]="inputModel" [texto]="titulo"></app-imagenes>
+</div>
+<div *ngIf="estilo===3" class="custom-control custom-switch en-linea" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda}">
+    <input type="checkbox" class="custom-control-input" id="menu20nuevoplananticipo" [(ngModel)]="inputModel" [disabled]="!modificable">
+    <label *ngIf="titulo!==''" class="custom-control-label" for="menu20nuevoplananticipo" style="margin-top: 5px;"><span [ngClass]="{'alinear_izquierda':titulo_izquierda}">{{titulo}}</span></label>
+</div>
+<div *ngIf="estilo===2" class="contenedor2" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda}">
+    <label class="etiqueta2" (click)="cambio()">
+        <span class="estilo2-texto" *ngIf="titulo_izquierda">{{titulo}}</span>
+        <div class="switch2" [ngClass]="{'tildado':inputModel}">
+            <span class="estilo2-selector" [ngClass]="{'tildado':inputModel}"></span>
+        </div>
+        <span class="estilo2-texto" *ngIf="!titulo_izquierda">{{titulo}}</span>
+    </label>
+</div>
+
+<div *ngIf="estilo===4" class="contenedor4" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'con_recuadro':con_recuadro,'alto40':alto===40,'alto36':alto===36}">
+    <label class="etiqueta4" (click)="cambio()">
+        <span class="estilo4-texto" *ngIf="titulo_izquierda">{{titulo}}</span>
+        <div class="switch4" [ngClass]="{'tildado':inputModel}">
+            <span class="estilo4-selector" [ngClass]="{'tildado':inputModel}"></span>
+        </div>
+        <span class="estilo4-texto" *ngIf="!titulo_izquierda">{{titulo}}</span>
+    </label>
+</div>

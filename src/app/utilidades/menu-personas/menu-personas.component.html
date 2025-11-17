@@ -1,0 +1,41 @@
+<div class="cabecera" [hidden]="pantalla!=='listado'" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="'PERSONAS'" [FondoNaranja]="true" [EsImagen]="false"></app-menu-item>
+    <app-paginador *ngIf="paginar.ok && !persona_modo_abm" [listado]="movimientos" [AlinearDerecha]="true" [paginar]="paginar"></app-paginador>
+</div>
+<div class="cabecera segunda_cabecera" *ngIf="pantalla==='listado' && !persona_modo_abm" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item *ngIf="Funcion.permitido('personas_abm')" (click)="viendo_persona=null;persona_modo_abm=true;" [EsImagen]="false" [AlinearDerecha]="true" [FondoModificar]="true" [Titulo]="'NUEVA PERSONA'"></app-menu-item>
+</div>
+<div class="cabecera pie_pagina" *ngIf="pantalla==='listado'" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-texto class="alinear_izquierda" [titulo]="'Filtrar nombre:'" [(inputModel)]="filtro_nombre" [ancho]="300"></app-texto>
+    <app-boton class="alinear_izquierda margen_izquierdo_5" [titulo]="'Aplicar Filtros'" [Verde]="true" (enter)="actualizar()"></app-boton>
+</div>
+<div class="div_contenedor_componentes_menu con_pie con_pie_doble_cabecera" [hidden]="pantalla!=='listado' || persona_modo_abm" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--listado de personas-->
+    <table *ngIf="pantalla==='listado'" class="tabla_con_cabecera">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th colspan="2"><b>Nombre</b></th>
+                <th><b>Teléfono</b></th>
+                <th><b>Domicilio</b></th>
+                <th><b>Correo Electrónico</b></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="paginar.grupos!==null && paginar.grupos.length>0 && paginar.ok">
+            <tr *ngFor="let persona of paginar.grupos[paginar.viendo.id].listado" align=left (click)="f_persona_ver(persona)">
+                <td align=center>{{persona.doc_numero}}</td>
+                <td>{{persona.nombre}}</td>
+                <td>{{persona.telefono}}</td>
+                <td>{{persona.domicilio}}</td>
+                <td>{{persona.correo_electronico}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="cabecera" *ngIf="pantalla==='viendo_persona'" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item *ngIf="!persona_modo_abm" (click)="pantalla='listado'" [AlinearIzquierda]="true" [ImagenRegresar]="true" [Titulo]="'Regresar'"></app-menu-item>
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="'PERSONAS'" [FondoNaranja]="true" [EsImagen]="false"></app-menu-item>
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="viendo_persona.TipoyNumeroDocumento()" [EsImagen]="false"></app-menu-item>
+    <app-menu-item [AlinearIzquierda]="true" [Titulo]="viendo_persona.nombre" [FondoCeleste]="true" [EsImagen]="false"></app-menu-item>
+</div>
+<app-persona-ver *ngIf="pantalla==='viendo_persona'" [estemenu]="estemenu" [viendo_persona]="viendo_persona" (debe_actualizar)="actualizar(paginar.viendo.id,false)"></app-persona-ver>
+<app-abmpersona *ngIf="persona_modo_abm" [estemenu]="'personas'" [persona]="viendo_persona" (volver)="f_regreso_del_abm($event)"></app-abmpersona>

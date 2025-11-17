@@ -1,0 +1,109 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [EsImagen]="false" [Titulo]="'GESTIÓN DE CASOS'" [FondoCeleste]="true" [Efectos]="false"></app-menu-item>
+    <app-menu-item *ngIf="viendo_uno===null" [AlinearIzquierda]="true" [ImagenFiltro]="true" (click)="f_alternar_filtro(1)"></app-menu-item>
+    <app-menu-item *ngIf="viendo_uno!==null" [AlinearIzquierda]="true" [ImagenRegresar]="true" (click)="viendo_uno=null"></app-menu-item>
+    <app-menu-item *ngIf="viendo_uno===null" [AlinearDerecha]="true" [ImagenExcel]="true" (click)="f_exportar(1)"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [hidden]="viendo_uno!==null" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <!--viendo filtro-->
+    <div *ngIf="viendo_filtro===1" class="div_filtro sombra-verde" [style.width.px]="600">
+        <div class="div_filtro_titulo" (click)="f_alternar_filtro(0)"><span>FILTROS DE CONSULTA</span></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Cliente: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="filtro_persona" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Referente: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="filtro_referente" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Area: '" [mostrar_titulo]="true" [datos]="G.areas" [(inputModel)]="filtro_area" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Estado: '" [mostrar_titulo]="true" [datos]="G.estados_casos" [(inputModel)]="filtro_estado" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila">
+            <div style="text-align: center;">
+                <app-boton [Azul]="true" [titulo]="'CONSULTAR'" [ancho]="300" (click)="f_consultar()"></app-boton>
+            </div>
+        </div>
+    </div>
+    <!-- Viendo los movimientos individuales -->
+    <table *ngIf="viendo_filtro===0 && pantalla==='viendo_movimientos'" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Número</b></th>
+                <th><b>Nombre</b></th>
+                <th><b>Area</b></th>
+                <th><b>Cliente</b></th>
+                <th><b>Referente</b></th>
+                <th><b>Contraparte</b></th>
+                <th><b>Estado</b></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="paginar.grupos!==null && paginar.grupos.length>0 && paginar.ok">
+            <tr *ngFor="let item of paginar.grupos[paginar.viendo.id].listado" align=left (click)="f_ver(item)">
+                <td>{{item.numero}}</td>
+                <td>{{item.nombre}}</td>
+                <td>{{Funcion.f_traer_dato_tabla_texto(this.G.areas,item.area)}}</td>
+                <td>{{Funcion.f_persona(item.persona)}}</td>
+                <td><p *ngIf="item.referente>0">{{Funcion.f_persona(item.referente)}}</p></td>
+                <td>{{item.contraparte}}</td>
+                <td>{{Funcion.f_traer_dato_tabla_texto(this.G.estados_casos,item.estado)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="cabecera segunda_cabecera" *ngIf="viendo_uno!==null" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item (click)="f_ver_uno(0)" [AlinearIzquierda]="true" [Seleccionado]="viendo_uno_que===0" [EsImagen]="false" [Titulo]="'DATOS'"></app-menu-item>
+    <app-menu-item (click)="f_ver_uno(1)" [AlinearIzquierda]="true" [Seleccionado]="viendo_uno_que===1" [EsImagen]="false" [Titulo]="'NOTAS'"></app-menu-item>
+    <app-menu-item (click)="f_ver_uno(2)" [AlinearIzquierda]="true" [Seleccionado]="viendo_uno_que===2" [EsImagen]="false" [Titulo]="'ESTADOS'"></app-menu-item>
+
+    <app-menu-item *ngIf="viendo_uno_que===0 && Funcion.permitido('casos_modificar_datos') && !modificando.modificando" [AlinearDerecha]="true" [EsImagen]="false" [Titulo]="'MODIFICAR DATOS'" (click)="modificando.modificando=true"></app-menu-item>
+    <app-menu-item *ngIf="viendo_uno_que===1 && Funcion.permitido('casos_notas_agregar')" [AlinearDerecha]="true" [EsImagen]="false" [Titulo]="'NUEVA NOTA'" (click)="f_nuevanota()"></app-menu-item>
+    <app-menu-item *ngIf="viendo_uno_que===2 && Funcion.permitido('casos_estado_cambiar')" [AlinearDerecha]="true" [EsImagen]="false" [Titulo]="'NUEVO ESTADO'" (click)="f_nuevo_estado()"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu doble_cabecera" *ngIf="viendo_uno!==null" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <div *ngIf="viendo_uno_que===0" class="div_filtro sombra-verde doble_cabecera" [style.width.px]="800">
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Cliente: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="modificando.persona" [solo_lectura]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Referido por: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="modificando.referente" [borrable]="true" [solo_lectura]="!modificando.modificando"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Area: '" [mostrar_titulo]="true" [datos]="G.areas" [(inputModel)]="modificando.area" [solo_lectura]="!modificando.modificando"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="modificando.nombre" [ancho]="780" [titulo]="'Nombre del Caso:'" [disabled]="!modificando.modificando"></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="modificando.contraparte" [ancho]="780" [titulo]="'Contraparte:'" [disabled]="!modificando.modificando"></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="modificando.numero" [ancho]="780" [titulo]="'Número de expediente:'" [disabled]="!modificando.modificando"></app-texto></div></div>
+        <div class="div_filtro_fila" *ngIf="modificando.modificando">
+            <div>
+                <app-boton class="alinear_izquierda" [Rojo]="true" [titulo]="'CANCELAR'" [ancho]="200" (click)="f_actualizar_uno()"></app-boton>
+                <app-boton class="alinear_derecha" [Azul]="true" [titulo]="'CONFIRMAR'" [ancho]="200" (click)="f_guardar()"></app-boton>
+            </div>
+        </div>
+
+    </div>
+    <table *ngIf="viendo_uno_que===1" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Texto</b></th>
+                <th><b>Fecha</b></th>
+                <th><b>Usuario</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of notas" align=left>
+                <td>{{item.texto}}</td>
+                <td>{{Funcion.mysqldatetime_a_php(item.fecha)}}</td>
+                <td>{{Funcion.f_usuario(item.usuario)}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="viendo_uno_que===2" class="tabla_con_cabecera top_con_cabecera0">
+        <thead>
+            <tr class="th_top_con_cabecera0">
+                <th><b>Estado</b></th>
+                <th><b>Fecha</b></th>
+                <th><b>Fecha Carga</b></th>
+                <th><b>Usuario</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of estados" align=left>
+                <td>{{Funcion.f_traer_dato_tabla_texto(this.G.estados_casos,item.estado)}}</td>
+                <td>{{Funcion.mysql_a_php(item.fecha)}}</td>
+                <td>{{Funcion.mysqldatetime_a_php(item.fecha_carga)}}</td>
+                <td>{{Funcion.f_usuario(item.usuario)}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<ng-template #contenedorConfirmacion></ng-template>

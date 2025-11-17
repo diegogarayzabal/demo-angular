@@ -1,0 +1,15 @@
+<div *ngIf="mostrar && EsImagen && !EsDobleTexto" class="caja_contenedora" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'fondo_confirmar':FondoConfirmar,'fondo_cancelar':FondoCancelar,'fondo_modificar':FondoModificar,'fondo_celeste':FondoCeleste,'fondo_gris_claro':FondoGrisClaro,'fondo_rosa_claro':FondoRosaClaro,'fondo_naranja':FondoNaranja,'fondo_amarillo':FondoAmarillo,'fondo_verde':FondoVerde,'imagen_tamanio1':ImagenTamanio===1,'imagen_tamanio2':ImagenTamanio===2,'imagen_tamanio2_5':ImagenTamanio===2.5,'imagen_tamanio3':ImagenTamanio===3,'seleccionado':Seleccionado,'seleccionado_doble_ancho':SeleccionadoDobleAncho}">
+    <div class="menu_item_caja" [ngClass]="{'ImagenAnchoFijo':ImagenAnchoFijo,'con_efectos':Efectos,'imagen_tamanio1':ImagenTamanio===1,'imagen_tamanio2':ImagenTamanio===2,'imagen_tamanio2_5':ImagenTamanio===2.5,'imagen_tamanio3':ImagenTamanio===3}">
+        <img class="menu_item" [src]="path_imagen" [title]="Titulo" [ngClass]="{'ImagenAnchoFijo':ImagenAnchoFijo,'imagen_tamanio1':ImagenTamanio===1,'imagen_tamanio2':ImagenTamanio===2,'imagen_tamanio2_5':ImagenTamanio===2.5,'imagen_tamanio3':ImagenTamanio===3}">
+    </div>
+</div>
+<div *ngIf="mostrar && !EsImagen && !EsDobleTexto" class="caja_contenedora_texto" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'texto_centrado':TextoCentrado,'seleccionado':Seleccionado,'seleccionado_doble_ancho':SeleccionadoDobleAncho,'tamanio2_5':ImagenTamanio===2.5,'tamanio3':ImagenTamanio===3}">
+    <div class="menu_item_caja_texto" [ngClass]="{'con_efectos':Efectos,'fondo_confirmar':FondoConfirmar,'fondo_cancelar':FondoCancelar,'fondo_modificar':FondoModificar,'fondo_celeste':FondoCeleste,'fondo_gris_claro':FondoGrisClaro,'fondo_rosa_claro':FondoRosaClaro,'fondo_naranja':FondoNaranja,'fondo_amarillo':FondoAmarillo,'fondo_negro':FondoNegroTexto,'fondo_verde':FondoVerde,'seleccionado':Seleccionado,'seleccionado_doble_ancho':SeleccionadoDobleAncho,'negrita':Negrita,'letra_grande':LetraGrande,'tamanio2_5':ImagenTamanio===2.5,'tamanio3':ImagenTamanio===3}">
+        <span #principal (click)="f_sacar_foco()">{{Titulo}}</span>
+    </div>
+</div>
+
+<div *ngIf="mostrar && EsDobleTexto" class="caja_menu_item_dos_lineas" [style.width.px]="DobleTextoAncho+10" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'fondo_confirmar':FondoConfirmar,'fondo_cancelar':FondoCancelar,'fondo_modificar':FondoModificar,'fondo_celeste':FondoCeleste,'fondo_gris_claro':FondoGrisClaro,'fondo_rosa_claro':FondoRosaClaro,'fondo_naranja':FondoNaranja,'fondo_amarillo':FondoAmarillo,'fondo_verde':FondoVerde}">
+    <span *ngIf="DobleTextoDatos.texto1!==''" [style.width.px]="DobleTextoAncho">{{DobleTextoDatos.titulo1}} <b>{{DobleTextoDatos.texto1}}</b></span>
+    <span *ngIf="DobleTextoDatos.texto2!==''" [style.width.px]="DobleTextoAncho">{{DobleTextoDatos.titulo2}} <b>{{DobleTextoDatos.texto2}}</b></span>
+</div>

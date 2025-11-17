@@ -1,0 +1,151 @@
+<div *ngIf="G.SISTEMA_ERROR>0" class="WindowLoad">
+  <div class="WindowLoad_texto">
+      <h2 *ngIf="G.SISTEMA_ERROR===1">Iniciaste sesión en otro equipo</h2>
+      <h2 *ngIf="G.SISTEMA_ERROR===2">VERSION INCORRECTA - PRESIONE F5 PARA ACTUALIZAR</h2>
+  </div>
+</div>
+<div *ngIf="G.ACTUALIZAR_SISTEMA" style="position: fixed; top:0; left:0; width: 100vw; height: 100vh;overflow: auto;">
+  <div id="divmenuitemvacio" style="z-index: 900;">
+      <img src="assets/ortiz_general.png">
+  </div>
+  <app-actualizar-sistema style="z-index: 1000" (actualizo)="f_volvio_de_actualizar()"></app-actualizar-sistema>
+</div>
+
+<app-alerta [alerta_ver]="G.alerta_ver" [mensaje]="G.alerta_texto" [tipo]="G.alerta_tipo"></app-alerta>
+<app-mensajes *ngIf="G.mensajes.length>0"></app-mensajes>
+<ng-template #contenedorConfirmacion></ng-template>
+<div *ngIf="G.GLoginOk===-2 || G.GLoginOk===-1">
+  <ng-container #contenedorLogin></ng-container>
+</div>
+<div *ngIf="G.SISTEMA_ERROR===0" [hidden]="G.ACTUALIZAR_SISTEMA" class="overlay-anchor">
+  <input #myInput style="visibility:hidden; ">
+  <div
+  id="midiv"
+  class="overlay-anchor"
+  [class.midiv-overlay-active]="G.div_procesando_general"
+  (window:resize)="cambia_ancho($event)"
+  *ngIf="G.GLoginOk>0"
+  style="position: fixed; inset: 0; overflow: auto;"
+  >
+  
+    <div class="overlay-local" *ngIf="G.div_procesando_general" role="dialog" aria-modal="true" aria-busy="true">
+        <div class="overlay-card">
+            <div class="spinner" aria-hidden="true"></div>
+            <div class="msg">{{ G.div_procesando_general_texto || 'Procesando…' }}</div>
+        </div>
+    </div>
+
+    <div class="overlay-local" [ngClass]="{'con_menu_estilo0':G.ModoMenu.estilo===0,'con_menu_estilo2':G.ModoMenu.estilo===2}" *ngIf="G.menu_item_seleccionado!==''" [hidden]="!G.div_esperando_local[G.menu_item_seleccionado]" role="dialog" aria-modal="true" aria-busy="true">
+        <div class="overlay-card">
+            <div class="spinner" aria-hidden="true"></div>
+            <div class="msg">{{ G.div_esperando_local_texto[G.menu_item_seleccionado] || 'Procesando…' }}</div>
+        </div>
+    </div>
+    <div *ngIf="(G.modo_celular) && menu_celular_todo_junto.length>10">
+      <div class="cabecera_general modo_celular" style="top: 0; z-index: 3200;">
+          <app-menu-item *ngIf="!desplegar_submenu_tipo_carpeta || viendo_menu_tipo_carpeta===null || viendo_submenu1_tipo_carpeta!==null"[Imagen]="'carpeta.svg'" [AlinearIzquierda]="true" (click)="desplegar_submenu_tipo_carpeta=!desplegar_submenu_tipo_carpeta;viendo_menu_tipo_carpeta=null;viendo_submenu1_tipo_carpeta=null; "></app-menu-item>
+          <app-menu-item *ngIf="desplegar_submenu_tipo_carpeta && viendo_menu_tipo_carpeta!==null  && viendo_submenu1_tipo_carpeta===null" [ImagenRegresar]="true" [AlinearIzquierda]="true" (click)="viendo_menu_tipo_carpeta=null"></app-menu-item>
+          <app-menu-item *ngIf="desplegar_submenu_tipo_carpeta && viendo_menu_tipo_carpeta!==null  && viendo_submenu1_tipo_carpeta!==null" [ImagenRegresar]="true" [AlinearIzquierda]="true" (click)="viendo_submenu1_tipo_carpeta=null"></app-menu-item>
+      </div>
+      <div *ngIf="desplegar_submenu_tipo_carpeta && viendo_menu_tipo_carpeta===null && desplegar_submenu_tipo_carpeta" id="divmenucelular" style="overflow-y:auto;">
+          <div class="menu_item_celular" *ngFor="let item of menu" (click)="viendo_menu_tipo_carpeta=item">
+              <img src="assets/carpeta_agregar.svg">
+              <span>{{item.nombre}}</span>
+          </div>
+      </div>
+      <div *ngIf="desplegar_submenu_tipo_carpeta && viendo_menu_tipo_carpeta!==null && viendo_submenu1_tipo_carpeta===null" id="divmenucelular" style="overflow-y:auto;z-index:3200;">
+          <div class="menu_item_celular" *ngFor="let item of viendo_menu_tipo_carpeta.submenu1" (click)="f_modo_carpeta_selecciona(item)" [ngClass]="{'item':!item.submenu}">
+              <img *ngIf="item.submenu" src="assets/carpeta_agregar.svg">
+              <img *ngIf="!item.submenu" src="assets/{{item.imagen}}">
+              <span>{{item.nombre}}</span>
+          </div>
+      </div>
+      <div *ngIf="desplegar_submenu_tipo_carpeta && viendo_menu_tipo_carpeta!==null && viendo_submenu1_tipo_carpeta!==null" id="divmenucelular" style="overflow-y:auto;z-index: 3200;">
+          <div class="menu_item_celular item" *ngFor="let item of viendo_submenu1_tipo_carpeta.submenu2" (click)="f_menu_item(item.opcion_id)">
+              <img src="assets/{{item.imagen}}">
+              <span>{{item.nombre}}</span>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="(G.modo_celular) && menu_celular_todo_junto.length<=10">
+      <div class="cabecera_general modo_celular" style="top: 0; z-index: 3200;">
+          <app-menu-item [Imagen]="'carpeta.svg'" [AlinearIzquierda]="true" (click)="desplegar_submenu_tipo_carpeta=!desplegar_submenu_tipo_carpeta;viendo_menu_tipo_carpeta=null;viendo_submenu1_tipo_carpeta=null; "></app-menu-item>
+      </div>
+      <div *ngIf="desplegar_submenu_tipo_carpeta" id="divmenucelular" style="overflow-y:auto;z-index: 3200;">
+          <div class="menu_item_celular item" *ngFor="let item of menu_celular_todo_junto" (click)="f_menu_item(item.opcion_id)">
+              <img src="assets/{{item.imagen}}">
+              <span>{{item.nombre}}</span>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="G.modo_celular">
+      <div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+          <h3>Ortiz Ramondelli</h3>
+      </div>
+      <div *ngIf="!desplegar_submenu_tipo_carpeta" class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+          <div *ngIf="G.menu_item_seleccionado===''" id="divmenuitemvacio">
+              <img src="assets/ortiz_general.png" tabindex="-1">
+              <app-boton style="position: fixed;bottom: 180px;" [titulo]="'CERRAR SESIÓN'" (enter)="f_logout()" [Tipo]=2></app-boton>
+              <div *ngIf="G.SesionesActivas>1" style="position: fixed;bottom: 130px;"><app-boton [titulo]="'Tienes '+G.SesionesActivas+' sesiones activas'" (enter)="f_cerrar_sesiones()" [Tipo]=0></app-boton></div>
+              <span style="position: fixed;bottom: 5px; right: 5px;">Versión: {{appVersion}}</span>
+          </div>
+      </div>
+
+  </div>
+  <div *ngIf="!G.modo_celular">
+      <!--menu lateral-->
+      <div class="barra_lateral_abajo" [ngClass]=" {'sin_imagen':G.ModoMenu.sin_imagen}" (click)="MostrandoMenu=false;f_limpiar_tildados_menu1()">
+          <app-menu-item [Efectos]="false" [Imagen]="'konsulti_isologo.png'" [ImagenTamanio]="3"></app-menu-item>
+      </div>
+
+      <div class="barra_lateral_arriba" [ngClass]=" {'sin_imagen':G.ModoMenu.sin_imagen}">
+          <app-menu-item *ngIf="G.menu_item_seleccionado!==''" (click)="Funcion.cerrar_menu(G.menu_item_seleccionado)" [AlinearIzquierda]="true" [Efectos]="true" [ImagenBorrar]="true" [ImagenTamanio]="G.ModoMenu.tamanio_imagen_arriba" [Titulo]="'Cerrar'"></app-menu-item>
+          <app-menu-item *ngIf="G.menu_item_seleccionado!==''" (click)="f_menu_recargar()" [ImagenRenovar]="true" [AlinearDerecha]="true" [Efectos]="false" [ImagenTamanio]="G.ModoMenu.tamanio_imagen_arriba" [Titulo]="'Recargar'"></app-menu-item>
+      </div>
+      <div class="barra_lateral" [ngClass]="{'abierto':MostrandoMenu || G.ModoMenu.sin_imagen,'sin_imagen':G.ModoMenu.sin_imagen}">
+          <div class="barra_lateral_item1" [ngClass]="{'tildado':item.tildado,'mostrando_menu':MostrandoMenu}" *ngFor="let item of menu" (click)="f_click_menu(1,item)">
+              <img *ngIf="!G.ModoMenu.sin_imagen" [src]="'assets/'+item.imagen" [attr.title]="f_menu_lateral_mostrar_nombre(item.nombre)">
+              <span *ngIf="MostrandoMenu || G.ModoMenu.sin_imagen" style="color: black">{{item.nombre}}</span>
+          </div>
+          <div (click)="f_intercambiar_opciones_abiertas()" class="barra_lateral_item1" [ngClass]="{'tildado':MenuViendoTipo===3,'mostrando_menu':MostrandoMenu}" *ngIf="f_opciones_abiertas().length===2">
+              <img *ngIf="!G.ModoMenu.sin_imagen" [src]="'assets/transferencia.svg'" [attr.title]="'Opciones abiertas - Intercambiar'">
+              <span *ngIf="MostrandoMenu || G.ModoMenu.sin_imagen" style="color: black">Opciones Abiertas</span>
+          </div>
+          <div (click)="f_click_menu(3)" class="barra_lateral_item1" [ngClass]="{'tildado':MenuViendoTipo===3,'mostrando_menu':MostrandoMenu}" *ngIf="f_opciones_abiertas().length>2">
+              <img [src]="'assets/carpeta.svg'" [attr.title]="'Opciones abiertas'">
+              <span *ngIf="MostrandoMenu" style="color: black">Opciones Abiertas</span>
+          </div>
+          <div *ngIf="MostrandoMenu" class="barra_lateral_menu_seleccionado" [style.top.px]="submenu1_top_triangulo" [style.left.px]="G.ModoMenu.posicion_triangulo1"></div>
+          <div class="barra_lateral_sin_nada" [ngClass]="{'mostrando_menu':MostrandoMenu}" [style.height.px]="f_alto_div_sin_nada()" (click)="f_ocultar_menu()"></div>
+      </div>
+      <div *ngIf="MostrandoMenu" class="barra_lateral_submenu1" [ngClass]="{'sin_imagen':G.ModoMenu.sin_imagen}" [style.top.px]="submenu1_top" [style.height.px]="submenu1_alto">
+          <div class="barra_lateral_subitem1" [ngClass]="{'tildado':item.tildado,'es_submenu':MenuViendoTipo===1 && item['submenu2'].length>0}" *ngFor="let item of Submenu1" (click)="f_click_submenu(item)">
+              <span>{{item.nombre}}</span>
+          </div>
+      </div>
+      <div *ngIf="MostrandoMenu && ViendoSubmenu2" class="barra_lateral_menu_seleccionado" [style.top.px]="submenu2_top_triangulo" [style.left.px]="G.ModoMenu.posicion_triangulo2"></div>
+      <div *ngIf="MostrandoMenu && ViendoSubmenu2" [style.top.px]="submenu2_top" [style.height.px]="submenu2_alto" class="barra_lateral_submenu2" [ngClass]="{'sin_imagen':G.ModoMenu.sin_imagen}">
+          <div class="barra_lateral_subitem2" *ngFor="let item of Submenu2" (click)="f_click_opcion(item)">
+              <span style="color: black">{{item.nombre}}</span>
+          </div>
+      </div>
+      <div class="div_contenedor_componentes_menu">
+          <div *ngIf="G.menu_item_seleccionado===''" id="divmenuitemvacio">
+              <img src="assets/ortiz_general.png">
+              <app-boton style="position: fixed;bottom: 180px;" [titulo]="'CERRAR SESIÓN'" (enter)="f_logout()" [Tipo]=2></app-boton>
+              <div *ngIf="G.SesionesActivas>1" style="position: fixed;bottom: 130px;"><app-boton [titulo]="'Tienes '+G.SesionesActivas+' sesiones activas'" (enter)="f_cerrar_sesiones()" [Tipo]=0></app-boton></div>
+              <span style="position: fixed;bottom: 5px; right: 5px;">Versión: {{appVersion}}</span>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="f_abierto('configuracion')" [hidden]="f_ocultar_componente('configuracion')"><ng-container #contenedorconfiguracion></ng-container></div>
+  <div *ngIf="f_abierto('config_usuarios')" [hidden]="f_ocultar_componente('config_usuarios')"><ng-container #contenedorconfig_usuarios></ng-container></div>
+  <div *ngIf="f_abierto('personas')" [hidden]="f_ocultar_componente('personas')"><ng-container #contenedorpersonas></ng-container></div>
+  <div *ngIf="f_abierto('recordatorios')" [hidden]="f_ocultar_componente('recordatorios')"><ng-container #contenedorrecordatorios></ng-container></div>
+  <div *ngIf="f_abierto('visitas_nueva')" [hidden]="f_ocultar_componente('visitas_nueva')"><ng-container #contenedorvisitas_nueva></ng-container></div>
+  <div *ngIf="f_abierto('visitas')" [hidden]="f_ocultar_componente('visitas')"><ng-container #contenedorvisitas></ng-container></div>
+  <div *ngIf="f_abierto('casos_nuevo')" [hidden]="f_ocultar_componente('casos_nuevo')"><ng-container #contenedorcasos_nuevo></ng-container></div>
+  <div *ngIf="f_abierto('casos')" [hidden]="f_ocultar_componente('casos')"><ng-container #contenedorcasos></ng-container></div>
+
+  </div>
+</div>

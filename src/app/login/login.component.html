@@ -1,0 +1,31 @@
+<div style="margin:0;padding:0;width: 100vw; height: 100vh;top:0;left:0;position:fixed; ">
+    <div class="login-box">
+        <img class="milogo" src="assets/konsulti_isologo.png" alt="Ortiz Ramondelli">
+        <h1 *ngIf="modo===0">Ingreso al Sistema</h1>
+        <h1 *ngIf="modo===1">Nuevo Usuario</h1>
+        <h1 *ngIf="modo===2">Olvidó la Contraseña</h1>
+        <app-numero [titulo]="'Cuit/Cuil'" [(inputModel)]="usuario" [decimales]="0" [alinear_centrado]="true" [ConFormato]="0" [ancho]="300" [alto]="40"></app-numero>
+        <app-texto *ngIf="modo===1" [titulo]="'Nombre:'" [ancho]="300" [(inputModel)]="usuario_nombre" [alto]="40"></app-texto>
+        <app-texto *ngIf="(modo>0 || ForzadoACambiar_mail)" [titulo]="'Correo electrónico:'" [ancho]="300" [(inputModel)]="mail" [alto]="40"></app-texto>
+        <app-texto *ngIf="modo===0" [titulo]="'Ingrese su contraseña:'" [ancho]="300" [(inputModel)]="clave" [TipoPassword]="true" [alto]="40"></app-texto>
+        <app-texto *ngIf="CambiarClave" [titulo]="'Nueva contraseña:'" [ancho]="300" [(inputModel)]="clave1" [TipoPassword]="true" [alto]="40"></app-texto>
+        <app-texto *ngIf="CambiarClave" [titulo]="'Repetir nueva contraseña:'" [ancho]="300" [(inputModel)]="clave2" [TipoPassword]="true" [alto]="40"></app-texto>
+        <p></p>
+        <app-boton *ngIf="modo===0" [Verde]="true" (enter)="f_login()" [titulo]="'INGRESAR'" [ancho]="300" [alto]="40"></app-boton>
+        <app-boton *ngIf="modo===1" [Azul]="true" (enter)="f_nuevo()" [titulo]="'CREAR USUARIO'" [ancho]="300" [alto]="40"></app-boton>
+        <app-boton *ngIf="modo===2" [Naranja]="true" (enter)="f_blanquear()" [titulo]="'GENERAR CONTRASEÑA'" [ancho]="300" [alto]="40"></app-boton>
+        
+        <div style="width:100%; margin-top: 10px;">
+            <app-boton *ngIf="modo===1 || modo===2" class="alinear_izquierda" [Verde]="true" (enter)="modo=0" [titulo]="'Ingresar'" [ancho]="135" [alto]="35"></app-boton>
+            <app-boton *ngIf="modo===0 || modo===2" [ngClass]="{'alinear_izquierda':modo===0,'alinear_derecha':modo===2}" [Azul]="true" (enter)="modo=1" [titulo]="'Nuevo Usuario'" [ancho]="135" [alto]="35"></app-boton>
+            <app-boton *ngIf="modo===0 || modo===1" class="alinear_derecha" [Naranja]="true" (enter)="modo=2" [titulo]="'Olvidé Contraseña'" [ancho]="135" [alto]="35"></app-boton>
+        </div>
+        <span class="version">{{appVersion}}</span>
+    </div>
+    <section id="seccion_olas">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
+    </section>
+</div>

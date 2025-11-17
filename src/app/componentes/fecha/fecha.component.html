@@ -1,0 +1,55 @@
+<div id="principal" [style.height.px]="altoprincipal" style="padding-top:1px" [style.width.px]="anchocaja" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda}" (click)="enfocartext()">
+    <div id="contenedor" class="escrito enfocado" [style.height.px]="alto-1" [style.width.px]="anchocaja" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+        <div id="etiqueta" *ngIf="titulo.length>0" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+            <span>{{titulo}}</span>
+        </div>
+        <div id="texto">
+            <input *ngIf="modificable" type="text" (click)="f_click(1)" [ngClass]="{'enfocado':foco_dia}" [disabled]="disabled" [style.width.px]=20 (focus)="enfocado_dia()" (blur)="sin_foco_dia()" [(ngModel)]="valor_dia" (ngModelChange)="dia_cambio()" maxlength=2
+                (keydown)="tecla_en_dia($event)" #dia/><span *ngIf="modificable">/</span>
+            <input *ngIf="modificable" type="text" (click)="f_click(2)" [ngClass]="{'enfocado':foco_mes}" [disabled]="disabled" [style.width.px]=20 (focus)="enfocado_mes()" (blur)="sin_foco_mes()" [(ngModel)]="valor_mes" (ngModelChange)="mes_cambio()" maxlength=2
+                (keydown)="tecla_en_mes($event)" #mes/><span *ngIf="modificable">/</span>
+            <input *ngIf="modificable" type="text" (click)="f_click(3)" [ngClass]="{'enfocado':foco_anio}" [disabled]="disabled" [style.width.px]=36 (focus)="enfocado_anio()" (blur)="sin_foco_anio()" [(ngModel)]="valor_anio" (ngModelChange)="anio_cambio()" maxlength=4
+                (keydown)="tecla_en_anio($event)" #anio />
+            <input *ngIf="modificable && con_horario>0" type="text" (click)="f_click(4)" [ngClass]="{'enfocado':foco_hora}" [disabled]="disabled" [style.width.px]=20 (focus)="enfocado_hora()" (blur)="sin_foco_hora()" [(ngModel)]="valor_hora" (ngModelChange)="hora_cambio()" maxlength=2
+                (keydown)="tecla_en_hora($event)" #hora [style.padding-left.px]=3/>
+            <span *ngIf="modificable && con_horario>0">:</span>
+            <input *ngIf="modificable && con_horario>0" type="text" (click)="f_click(5)" [ngClass]="{'enfocado':foco_minutos}" [disabled]="disabled" [style.width.px]=20 (focus)="enfocado_minutos()" (blur)="sin_foco_minutos()" [(ngModel)]="valor_minutos" (ngModelChange)="minutos_cambio()" maxlength=2
+                (keydown)="tecla_en_minutos($event)" #minutos/>
+            <span *ngIf="modificable && con_horario>1">:</span>
+            <input *ngIf="modificable && con_horario>1" type="text" (click)="f_click(6)" [ngClass]="{'enfocado':foco_segundos}" [disabled]="disabled" [style.width.px]=20 (focus)="enfocado_segundos()" (blur)="sin_foco_segundos()" [(ngModel)]="valor_segundos" (ngModelChange)="segundos_cambio()" maxlength=2
+                (keydown)="tecla_en_segundos($event)" #segundos />
+
+            <img *ngIf="modificable" src="assets/calendario.svg" style="width:12px;height:12px;" (click)="f_calendario()">
+            <input *ngIf="!modificable" type="text" [style.width.px]=72 [(ngModel)]="fecha_solo_lectura" readonly>
+        </div>
+    </div>
+</div>
+<div *ngIf="viendo_calendario" id="calendario" [ngClass]="{'derecha':AlinearDerecha,'izquierda':AlinearIzquierda,'calendario_posicion_derecha':posicion_derecha}">
+    <table style="border-collapse: collapse;width:210px;">
+        <tr style="height: 30px;">
+            <td style="width: 10px;"><img src="assets/flecha_doble_izquierda.svg" class="imagen_calendario" title="Año anterior" (click)="armar_calendario(calendario_viendo_mes,calendario_viendo_anio-1)"></td>
+            <td style="width: 10px;"><img src="assets/flecha_izquierda.svg" class="imagen_calendario" title="Mes anterior" (click)="f_mes_anterior()"></td>
+            <td align=center>{{MESES[calendario_viendo_mes-1].nombre}} de {{calendario_viendo_anio}}</td>
+            <td style="width: 10px;"><img src="assets/flecha_derecha.svg" class="imagen_calendario" title="Mes siguiente" (click)="f_mes_posterior()"></td>
+            <td style="width: 10px;"><img src="assets/flecha_doble_derecha.svg" class="imagen_calendario" title="Año siguiente" (click)="armar_calendario(calendario_viendo_mes,calendario_viendo_anio+1)"></td>
+        </tr>
+    </table>
+    <table style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th class="cabecera_calendario">DO</th>
+                <th class="cabecera_calendario">LU</th>
+                <th class="cabecera_calendario">MA</th>
+                <th class="cabecera_calendario">MI</th>
+                <th class="cabecera_calendario">JU</th>
+                <th class="cabecera_calendario">VI</th>
+                <th class="cabecera_calendario">SA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let semana of calendario_dias">
+                <td class="calendario_td" [ngClass]="{'seleccionado':dia.actual,'no_seleccionado':!dia.actual,'es_hoy':dia.hoy,'es_otro_mes':dia.otro_mes}" *ngFor="let dia of semana" (click)="f_calendario_selecciono(dia.fecha)">{{dia.dia}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

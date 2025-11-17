@@ -1,0 +1,17 @@
+<div class="custom-select" [ngStyle]="{ 'width': ancho }" [ngClass]="{'enfocado':dropdownOpen,'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2}">
+  <div class="selected-option" (click)="toggleDropdown()">
+    <img *ngIf="selectedOption" [src]="selectedOption[campo_imagen]" class="option-image" />
+    <span>{{ selectedOption ? selectedOption[campo_nombre] : 'Seleccione una opción' }}</span>
+  </div>
+
+  <ul class="options-list" *ngIf="dropdownOpen">
+    <li
+      *ngFor="let option of options"
+      (click)="selectOption(option)"
+      class="option-item"
+    >
+      <img [src]="option[campo_imagen]" class="option-image" />
+      <span>{{ option[campo_nombre] }}</span>
+    </li>
+  </ul>
+</div>

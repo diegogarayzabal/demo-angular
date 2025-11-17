@@ -1,0 +1,20 @@
+.div_imagen {
+    position: relative;
+    display: inline-block;
+    .mostrar_title {
+        border: 1px solid grey;
+        background-color: whitesmoke;
+        position: absolute;
+        top: 25px;
+        left: 2px;
+        padding: 2px;
+        width: max-content;
+        visibility: hidden;
+        z-index: 2000;
+    }
+}
+.div_imagen:hover {
+    .mostrar_title {
+        visibility: visible;
+    }
+}

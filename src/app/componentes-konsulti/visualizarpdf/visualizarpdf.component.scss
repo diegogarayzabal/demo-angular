@@ -1,0 +1,110 @@
+$cabecera_altura: 40px;
+$cabecera_doble: 80px;
+$cabecera_triple: 120px;
+
+
+.contenedor_pdf {
+    position: fixed;
+    width: calc(100vw - 40px);
+    left:40px;
+    margin-left: 5px;
+    &.menu_estilo0 {
+        left: 100px;
+        width: calc(100vw - 100px);
+        margin-left: 0px;
+    }
+    &.menu_estilo2 {
+        left: 0px;
+        width: 100vw;
+    }
+    height: 100%;
+    &.con_cabecera {
+        margin-top: $cabecera_altura;
+        height: calc(100% - $cabecera_altura);
+    }
+    &.con_doble_cabecera {
+        margin-top: $cabecera_doble;
+        height: calc(100% - $cabecera_doble);
+    }
+}
+
+.alinear_derecha {
+    float:right;
+}
+
+.menu_item {
+    position: relative;
+    top:5px;
+    margin-left: 5px;
+    z-index: 2090;
+    display: inline-block;
+    border: 1px solid #000;
+    background-color: #fff;
+    &.menu_item_fondo_naranja {
+        background-color: #FFA07A;
+    }
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    overflow: auto;
+    width: 34px;
+    height: 34px;
+    padding: 2px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    &:not(.menu_item_sin_efectos) {
+        transition: background-color, 0.5s;
+    }
+    &:hover {
+        &:not(.menu_item_sin_efectos) {
+            background-color: rgb(74, 226, 155);
+        }
+    }
+  }
+
+  .span_contenedor {
+    position: relative;
+    top:5px;
+    margin-left: 5px;
+    z-index: 2090;
+    display: inline-block;
+    overflow: auto;
+    height: 34px;
+    padding: 2px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .menu_item_span {
+      position: relative;
+      top:5px;
+      margin-left: 5px;
+      z-index: 2090;
+      display: inline-block;
+      border: 1px solid #000;
+      background-color: #fff;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      overflow: auto;
+      height: 34px;
+      padding: 2px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      font-size: 30px;
+      font-weight: bold;
+      &:hover {
+          border: 2px solid black;
+          background-color: rgb(74, 226, 155);
+      }
+      &.seleccionado {
+          border: 2px solid black;
+          background-color: #FFA07A;
+      }
+  }
+  
+  .aumentar_barra_pdf {
+    ::ng-deep .toolbar {
+        height: 50px !important; /* Ajusta la altura según sea necesario */
+    }
+  }

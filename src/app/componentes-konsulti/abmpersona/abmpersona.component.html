@@ -1,0 +1,29 @@
+<div *ngIf="ver" class="div_contenedor_componentes_menu" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <div class="div_filtro sombra-verde" [style.width.px]="620" [style.max-height.px]="G.alto-80" style="overflow-y: auto;">
+        <div class="div_filtro_titulo sin_altura">
+            <div style="height: 40px;">
+                <span *ngIf="modificando.id===0">NUEVA PERSONA</span>
+                <span *ngIf="modificando.id>0">MODIFICANDO DATOS</span>
+            </div>
+        </div>
+        <div class="div_filtro_fila">
+            <div>
+                <app-select-comun class="alinear_izquierda" [(inputModel)]="modificando.doc_tipo" [titulo]="'Tipo Documento:'" [datos]="G.tipos_documentos" [solo_lectura]="modificando.id>0" [ancho]="150"></app-select-comun>
+                <app-numero *ngIf="Funcion.f_not_in(modificando.doc_tipo.id,[91,99])" class="alinear_izquierda" (inputModelChange)="verificar_cuit()" [(inputModel)]="modificando.doc_numero_cuit" [decimales]=0 [ancho]=120 [titulo]="'C.U.I.T.'" [alinear]=3 [min]=20000000000 [max]=39999999999 [ConFormato]=0 [modificable]="modificando.id===0"></app-numero>
+                <app-texto *ngIf="Funcion.f_in(modificando.doc_tipo.id,[91,99])" class="alinear_izquierda" [ancho]="150" [(inputModel)]="modificando.doc_numero" [titulo]="'Número:'"></app-texto>
+            </div>
+        </div>
+        <div class="div_filtro_fila"><div class="div_filtro_texto"><app-texto [(inputModel)]="modificando.nombre" [titulo]="'Nombre:'" [ancho]=580 [en_mayusculas]=true></app-texto></div></div>
+        <div class="div_filtro_fila"><div class="div_filtro_texto"><app-texto [(inputModel)]="modificando.domicilio" [titulo]="'Domicilio:'" [ancho]=590></app-texto></div></div>
+        <div class="div_filtro_fila"><div class="div_filtro_texto"><app-texto [(inputModel)]="modificando.telefono" [titulo]="'Teléfono:'" [ancho]=590></app-texto></div></div>
+        <div class="div_filtro_fila"><div class="div_filtro_texto"><app-texto [(inputModel)]="modificando.correo_electronico" [titulo]="'Correo Electrónico:'" [ancho]=590></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura">
+            <div>
+                <app-boton class="alinear_izquierda" [Rojo]="true" [titulo]="'Cancelar'" [ancho]="200" (enter)="volver.emit(0)"></app-boton>
+                <app-boton class="alinear_derecha" [Verde]="true" [titulo]="'GUARDAR DATOS'" [ancho]="200" (enter)="confirmar()"></app-boton>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #contenedorConfirmacion></ng-template>

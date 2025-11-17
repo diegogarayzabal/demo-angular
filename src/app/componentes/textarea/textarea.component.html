@@ -1,0 +1,8 @@
+<div id="contenedor" style="padding: 1px;display: inline-block" [style.height.px]="alto" [style.width]=estilo_ancho [style.max-width]=estilo_ancho_maximo (click)="enfocartext()" [ngClass]="{'enfocado':focused,'escrito':esta_escrito(),'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2,'estiloBS':CajaEstilo===3}">
+    <div id="etiqueta" style="z-index: 2;" *ngIf="titulo.length>0 && debe_mostrar_titulo && CajaEstilo!==3" [ngClass]="{'estilonormal':CajaEstilo===0,'estilorecuadro':CajaEstilo===1,'estilorecuadro_izquierdo':CajaEstilo===1.1,'estilorecuadro_centro':CajaEstilo===1.2,'estilorecuadro_derecho':CajaEstilo===1.3,'estilofill':CajaEstilo===2,'estiloBS':CajaEstilo===3}">
+        <span>{{titulo}}</span>
+    </div>
+    <div id="texto" style="width: 100%;">
+        <textarea [hidden]="!focused && inputModel===''" [style.height.px]="alto-15" [(ngModel)]="inputModel" style="width: 100%;border: none; outline: none;font-family: Roboto;" #numericInput (keydown)="control_cambio($event)"  (ngModelChange)="f_cambio()" (focus)="enfocado()" (blur)="sin_foco()" [disabled]="disabled"></textarea>
+    </div>
+</div>

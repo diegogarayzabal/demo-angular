@@ -1,0 +1,22 @@
+<div class="cabecera" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <app-menu-item [AlinearIzquierda]="true" [EsImagen]="false" [Titulo]="'NUEVO CASO'" [Negrita]="true" [LetraGrande]="true" [FondoVerde]="true" [Efectos]="false"></app-menu-item>
+    <app-menu-item *ngIf="Funcion.permitido('personas_abm')" (click)="persona_modo_abm=true;" [EsImagen]="false" [AlinearDerecha]="true" [FondoModificar]="true" [Titulo]="'NUEVA PERSONA'"></app-menu-item>
+</div>
+<div class="div_contenedor_componentes_menu" [hidden]="persona_modo_abm" [ngClass]="{'menu_estilo0':G.ModoMenu.estilo===0,'menu_estilo2':G.ModoMenu.estilo===2}">
+    <div class="div_filtro sombra-verde" [style.width.px]="800">
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Cliente: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="persona" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Referido por: '" [mostrar_titulo]="true" [datos]="G.personas" [(inputModel)]="referente" [borrable]="true"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Area: '" [mostrar_titulo]="true" [datos]="G.areas" [(inputModel)]="area"></app-select-especial></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="nombre" [ancho]="780" [titulo]="'Nombre del Caso:'"></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="contraparte" [ancho]="780" [titulo]="'Contraparte:'"></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-texto [(inputModel)]="numero" [ancho]="780" [titulo]="'Número de expediente:'"></app-texto></div></div>
+        <div class="div_filtro_fila sin_altura"><div><app-select-especial [titulo]="'Estado: '" [mostrar_titulo]="true" [datos]="G.estados_casos" [(inputModel)]="estado"></app-select-especial></div></div>
+        <div class="div_filtro_fila">
+            <div>
+                <app-boton class="alinear_derecha" [Azul]="true" [titulo]="'CONFIRMAR'" [ancho]="200" (click)="f_guardar()"></app-boton>
+            </div>
+        </div>
+    </div>
+</div>
+<app-abmpersona *ngIf="persona_modo_abm" [estemenu]="estemenu" (volver)="f_regreso_del_abm($event)"></app-abmpersona>
+<ng-template #contenedorConfirmacion></ng-template>

@@ -1,0 +1,6 @@
+<div [style.height.px]="alto" [style.width]=estilo_ancho [style.max-width]=estilo_ancho_maximo style="display: inline-block;" [ngClass]="{'alinear_izquierda':AlinearIzquierda,'alinear_derecha':AlinearDerecha}">
+    <div id="etiqueta" *ngIf="titulo.length>0 && mostrar_titulo" class="estilonormal">
+        <span><b>{{titulo}}</b></span>
+    </div>
+    <ng-select [ngClass]="{'fuente_modo_celular':G.modo_celular}" #elemento [items]=datos bindLabel="{{campo}}" [placeholder]="titulo" [searchable]="buscable" [clearable]="borrable" [(ngModel)]="inputModel" [readonly]="solo_lectura" (ngModelChange)="cambio()" (blur)="sin_foco()" style="text-align: left;"></ng-select>
+</div>

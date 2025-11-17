@@ -1,0 +1,14 @@
+<div class="div_imagen" [style.width.px]="ancho" [style.height.px]="alto">
+    <div *ngIf="texto!==''" class="mostrar_title">{{texto}}</div>
+    <svg *ngIf="imagen==='chequeado_si'" [style.width.px]="ancho" [style.height.px]="alto">
+        <rect *ngIf="tamanio===1" x=0 y=0 height=26 width=26 style="stroke:#000; fill: #fff;" ></rect>
+        <rect *ngIf="tamanio===1" x=1 y=1 height=24 width=24 style="stroke:#000; fill: #fff;" ></rect>
+        <line *ngIf="tamanio===1 && tildado" x1=4 y1=15 x2=10 y2=21 style="stroke:#000; stroke-width:2"></line>
+        <line *ngIf="tamanio===1 && tildado" x1=10 y1=21 x2=22 y2=7 style="stroke:#000; stroke-width:2"></line>
+    </svg>
+    <svg *ngIf="imagen==='cruz'" [style.width.px]="ancho" [style.height.px]="alto">
+        <line *ngIf="tamanio===1" x1=3 y1=3 x2=23 y2=23 style="stroke:#000; stroke-width:4"></line>
+        <line *ngIf="tamanio===1" x1=3 y1=23 x2=23 y2=3 style="stroke:#000; stroke-width:4"></line>
+    </svg>
+
+</div>

@@ -1,0 +1,139 @@
+div {
+    display: inline-block;
+}
+
+.tilde {
+    padding: 0;
+}
+
+.contenedor2 {
+    display: flex;
+    margin: 0 auto;
+    height: 40px;
+    justify-content: center;
+    padding-right: 3px;
+}
+
+.etiqueta2 { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .estilo2-texto {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}
+.etiqueta2 .switch2 {
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    position: relative;
+    background-color: red;
+    border-radius: 13px;
+    padding: 2px;
+    &.tildado {
+        background-color: blue;
+    }
+    .estilo2-selector {
+        padding-top: 2px;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 30px;
+        content: '';
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 3px;
+        bottom: 3px;
+        border-radius: 50%;
+        transition: .4s all ease;
+        background-color: aliceblue;
+        &.tildado {
+            transform: translateX(24px);
+        }
+
+    }
+}
+
+
+.contenedor4 {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    padding-right: 3px;
+    padding-top:10px;
+    &:not(.con_recuadro) {
+        &.alto40 {
+            height: 40px;
+        }
+        &.alto36 {
+            height: 36px;
+        }
+    }
+    &.con_recuadro {
+        height: 36px;
+        border: 1px solid black;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        border:1px solid black;
+        background-color: white;
+    }
+}
+
+.etiqueta4 { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .estilo4-texto {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}
+.etiqueta4 .switch4 {
+    display: inline-block;
+    width: 26px;
+    height: 30px;
+    position: relative;
+    border: solid 3px grey;
+    border-radius: 3px;
+    background-color: whitesmoke;
+    &.tildado {
+        border-color: blue;
+    }
+    .estilo4-selector {
+        justify-content: space-between;
+        align-items: center;
+        content: '';
+        width: 18px;
+        height: 10px;
+        position: absolute;
+        left: 1px;
+        bottom: 1px;
+        transition: .2s all ease;
+        background-color: grey;
+        border-radius: 2px;
+        &.tildado {
+            transform: translateY(-12px);
+            background-color: blue;
+        }
+    }
+}
+
+.tildar_comun {
+    border: 2px solid black;
+}
+
+.tildar_comun_tildado{
+    box-shadow: 0px 0px 30px 20px rgb(81, 81, 225) inset;
+}
+
+.derecha {
+    float: right;
+}
+
+.izquierda {
+    float: left;
+}

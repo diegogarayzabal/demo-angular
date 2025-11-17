@@ -1,0 +1,24 @@
+<div [style.width.px]="ancho">
+    <div *ngIf="pregunta_si_guarda" class="div_filtro_titulo altura-45">
+        <app-menu-item [AlinearIzquierda]="true" [ImagenBorrar]="true" (click)="cancelar.emit()"></app-menu-item>
+        <span>{{titulo}}</span>
+        <app-menu-item [AlinearDerecha]="true" [ImagenGuardar]="true" (click)="f_confirmar()" [Titulo]="'Confirmar'"></app-menu-item>
+    </div>
+    <div *ngIf="pregunta_si_guarda" class="div_filtro_fila sin_altura">
+        <div>
+            <app-archivo [titulo]="'Seleccionar Imagen'" [DevolverSinProcesar]="true" (archivo_cargado)="f_verificar($event)"></app-archivo>
+        </div>
+    </div>
+    <div *ngIf="ImagenCargada" class="div_filtro_fila sin_altura">
+        <div>
+            <p><b>IMAGEN SELECCIONADA</b></p>
+            <app-imagen-mostrar [Src]="cardImageBase64" [anchoyalto]="ancho-10"></app-imagen-mostrar>
+        </div>
+    </div>
+    <div *ngIf="imagen_actual!==''" class="div_filtro_fila sin_altura">
+        <div>
+            <p><b>IMAGEN ACTUAL</b></p>
+            <app-imagen-mostrar [Src]="imagen_actual" [anchoyalto]="ancho-10"></app-imagen-mostrar>
+        </div>
+    </div>
+</div>
