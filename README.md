@@ -66,7 +66,6 @@ src/
 │ ├── funciones.service.ts
 │ ├── pdfs.service.ts
 │ ├── globales.ts
-│
 ├── assets/
 ├── environments/
 ├── index.html
@@ -81,22 +80,16 @@ Clonar el repositorio:
 
 ```bash
 git clone https://github.com/diegogarayzabal/demo-angular.git
-
-Instalar dependencias:
-
+cd demo-angular
 npm install
-
-▶ Ejecutar la aplicación
 ng serve --open
-
 
 La aplicación se abrirá automáticamente en:
 
 http://localhost:4200/
 
-
-Nota: Esta demo contiene únicamente la parte frontend.
-No incluye backend PHP ni configuraciones privadas del sistema real.
+Nota: Esta demo contiene únicamente la parte frontend (Angular).
+El backend PHP del sistema real no está incluido por razones de seguridad.
 
 🎯 Objetivo del repositorio
 
@@ -119,33 +112,6 @@ LinkedIn: https://linkedin.com/in/diego-garayzabal
 
 Proyecto publicado únicamente con fines demostrativos.
 
+📸 Capturas de pantalla
 
-## 📸 Capturas de pantalla
-
-### Login
-![Login](login.jpg)
-
-### Menú principal
-![Menu](menu.jpg)
-
-### Registro de visitas
-![Visitas](visitas.jpg)
-
-### Nueva visita
-![Nueva visita](nuevavisita.jpg)
-
-### Casos (listado)
-![Casos](casos.jpg)
-
-### Nuevo caso
-![Nuevo caso](nuevocaso.jpg)
-
-### Personas (gestión)
-![Personas](personas.jpg)
-
-### Usuarios y permisos
-![Usuarios y permisos](usuariospermisos.jpg)
-
-### Configuración general
-![Configuración](configuracion.jpg)
-
+## 📸 Capturas de pantalla ### Login ![Login](login.jpg) ### Menú principal ![Menu](menu.jpg) ### Registro de visitas ![Visitas](visitas.jpg) ### Nueva visita ![Nueva visita](nuevavisita.jpg) ### Casos (listado) ![Casos](casos.jpg) ### Nuevo caso ![Nuevo caso](nuevocaso.jpg) ### Personas (gestión) ![Personas](personas.jpg) ### Usuarios y permisos ![Usuarios y permisos](usuariospermisos.jpg) ### Configuración general ![Configuración](configuracion.jpg)
