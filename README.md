@@ -141,7 +141,7 @@ Proyecto publicado únicamente con fines demostrativos.
 ![Nuevo caso](nuevocaso.jpg)
 
 ### Personas (gestión)
-![Personas](personasjpg.jpg)
+![Personas](personas.jpg)
 
 ### Usuarios y permisos
 ![Usuarios y permisos](usuariospermisos.jpg)
