@@ -22,21 +22,21 @@ La finalidad del repositorio es permitir la evaluación técnica de la arquitect
 ## 📌 Funcionalidades principales
 
 ### ✔ Registro de visitas
-- Carga de nuevas visitas
-- Fecha, motivo y datos de la persona
-- Listado con búsqueda y filtros
+- Carga de nuevas visitas  
+- Fecha, motivo y datos de la persona  
+- Listado con búsqueda y filtros  
 
 ### ✔ Gestión de casos
-- Alta y edición de casos
-- Datos básicos del cliente
-- Tipo de caso y estado general
-- Observaciones y notas internas
+- Alta y edición de casos  
+- Datos básicos del cliente  
+- Tipo de caso y estado general  
+- Observaciones y notas internas  
 
 ### ✔ Etapas del caso
-- Registro de cada etapa del proceso
-- Edición y eliminación
-- Orden temporal del expediente
-- Control visual del avance
+- Registro de cada etapa del proceso  
+- Edición y eliminación  
+- Orden temporal del expediente  
+- Control visual del avance  
 
 ### ✔ Componentes reutilizables
 - Inputs personalizados  
@@ -51,26 +51,27 @@ La finalidad del repositorio es permitir la evaluación técnica de la arquitect
 
 ## 📂 Estructura general del proyecto
 
+```
 src/
 ├── app/
-│ ├── login/
-│ ├── opciones/
-│ │ ├── menu-casos/
-│ │ ├── menu-casos-nuevo/
-│ │ ├── menu-visitas/
-│ │ ├── menu-visitas-nueva/
-│ ├── componentes/
-│ ├── tuberias/
-│ ├── utilidades/
-│ ├── configuracion/
-│ ├── funciones.service.ts
-│ ├── pdfs.service.ts
-│ ├── globales.ts
+│   ├── login/
+│   ├── opciones/
+│   │   ├── menu-casos/
+│   │   ├── menu-casos-nuevo/
+│   │   ├── menu-visitas/
+│   │   ├── menu-visitas-nueva/
+│   ├── componentes/
+│   ├── tuberias/
+│   ├── utilidades/
+│   ├── configuracion/
+│   ├── funciones.service.ts
+│   ├── pdfs.service.ts
+│   ├── globales.ts
 ├── assets/
 ├── environments/
 ├── index.html
 ├── styles.scss
-
+```
 
 ---
 
@@ -83,34 +84,39 @@ git clone https://github.com/diegogarayzabal/demo-angular.git
 cd demo-angular
 npm install
 ng serve --open
+```
 
 La aplicación se abrirá automáticamente en:
 
 http://localhost:4200/
 
-Nota: Esta demo contiene únicamente la parte frontend (Angular).
-El backend PHP del sistema real no está incluido por razones de seguridad.
+> Nota: Esta demo contiene únicamente la parte frontend (Angular).  
+> El backend PHP del sistema real no está incluido por razones de seguridad.
 
-🎯 Objetivo del repositorio
+---
 
-Mostrar dominio práctico de Angular
+## 🎯 Objetivo del repositorio
 
-Presentar un ejemplo funcional y organizado
+- Mostrar dominio práctico de Angular  
+- Presentar un ejemplo funcional y organizado  
+- Permitir evaluación de arquitectura, módulos y componentes  
+- Exponer capacidad de diseño frontend aplicado a un caso real  
 
-Permitir evaluación de arquitectura, módulos y componentes
+---
 
-Exponer capacidad de diseño frontend aplicado a un caso real
+## 👨‍💻 Autor
 
-👨‍💻 Autor
+**Diego Garayzabal**  
+Senior Full-Stack Developer  
+Angular • PHP • MySQL • Arquitectura de Software  
+LinkedIn: https://linkedin.com/in/diego-garayzabal  
 
-Diego Garayzabal
-Senior Full-Stack Developer
-Angular • PHP • MySQL • Arquitectura de Software
-LinkedIn: https://linkedin.com/in/diego-garayzabal
+---
 
-📄 Licencia
-
+## 📄 Licencia
 Proyecto publicado únicamente con fines demostrativos.
+
+---
 
 ## 📸 Capturas de pantalla
 
