@@ -148,3 +148,4 @@ Proyecto publicado únicamente con fines demostrativos.
 
 ### Configuración general
 ![Configuración](configuracion.jpg)
+
