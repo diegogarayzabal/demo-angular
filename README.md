@@ -112,6 +112,31 @@ LinkedIn: https://linkedin.com/in/diego-garayzabal
 
 Proyecto publicado únicamente con fines demostrativos.
 
-📸 Capturas de pantalla
+## 📸 Capturas de pantalla
 
-## 📸 Capturas de pantalla ### Login ![Login](login.jpg) ### Menú principal ![Menu](menu.jpg) ### Registro de visitas ![Visitas](visitas.jpg) ### Nueva visita ![Nueva visita](nuevavisita.jpg) ### Casos (listado) ![Casos](casos.jpg) ### Nuevo caso ![Nuevo caso](nuevocaso.jpg) ### Personas (gestión) ![Personas](personas.jpg) ### Usuarios y permisos ![Usuarios y permisos](usuariospermisos.jpg) ### Configuración general ![Configuración](configuracion.jpg)
+### Login
+![Login](login.jpg)
+
+### Menú principal
+![Menu](menu.jpg)
+
+### Registro de visitas
+![Visitas](visitas.jpg)
+
+### Nueva visita
+![Nueva visita](nuevavisita.jpg)
+
+### Casos (listado)
+![Casos](casos.jpg)
+
+### Nuevo caso
+![Nuevo caso](nuevocaso.jpg)
+
+### Personas (gestión)
+![Personas](personas.jpg)
+
+### Usuarios y permisos
+![Usuarios y permisos](usuariospermisos.jpg)
+
+### Configuración general
+![Configuración](configuracion.jpg)
