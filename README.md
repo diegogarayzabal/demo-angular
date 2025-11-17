@@ -1,58 +1,51 @@
-# Sistema de Gestión para Estudio Jurídico – Demo en Angular
+# Demo Sistema para Estudio Jurídico – Angular
 
 Este proyecto es una demostración de un sistema desarrollado en **Angular** para un estudio jurídico.  
-Permite registrar **visitas al estudio**, llevar una base de **casos**, y gestionar **etapas internas** del proceso.  
-El objetivo del repositorio es mostrar organización, arquitectura, estructura de componentes y capacidad de desarrollo en Angular para fines de evaluación técnica.
+Permite registrar **visitas al estudio**, gestionar **casos**, y realizar el seguimiento de **etapas** de cada expediente.  
+La finalidad del repositorio es permitir la evaluación técnica de la arquitectura, estructura y buenas prácticas de desarrollo frontend.
 
 ---
 
 ## 🚀 Tecnologías utilizadas
 
-- **Angular (12 → 19)**  
-- **TypeScript**  
-- **HTML / SCSS**  
-- **Angular Router**  
-- **Programación modular**  
-- **Servicios con RxJS**  
-- **Standalone Components**  
-- **Arquitectura escalable**  
+- **Angular (12 → 19)**
+- **TypeScript**
+- **HTML / SCSS**
+- **Angular Router**
+- **Standalone Components**
+- **Arquitectura modular**
+- **RxJS (servicios y estados)**
+- **Componentes reutilizables**
 
 ---
 
 ## 📌 Funcionalidades principales
 
-### ✔ Registro de visitas al estudio  
-- Carga manual de visitas  
-- Fecha, persona, motivo  
-- Listado con filtros rápidos
+### ✔ Registro de visitas
+- Carga de nuevas visitas
+- Fecha, motivo y datos de la persona
+- Listado con búsqueda y filtros
 
-### ✔ Gestión simple de casos  
-- Alta de casos  
-- Datos básicos del cliente  
-- Tipo de caso  
-- Estado general  
-- Observaciones
+### ✔ Gestión de casos
+- Alta y edición de casos
+- Datos básicos del cliente
+- Tipo de caso y estado general
+- Observaciones y notas internas
 
-### ✔ Seguimiento de etapas del caso  
-- Registro de cada etapa  
-- Edición y eliminación  
-- Control visual del avance  
-- Orden cronológico
+### ✔ Etapas del caso
+- Registro de cada etapa del proceso
+- Edición y eliminación
+- Orden temporal del expediente
+- Control visual del avance
 
-### ✔ Componentes reutilizables  
+### ✔ Componentes reutilizables
 - Inputs personalizados  
 - Selects dinámicos  
-- Paginador  
-- Filtros  
 - Tablas responsivas  
-- Componente para visualización de PDFs  
-- Botones, íconos SVG, badges de estado
-
-### ✔ Servicios  
-- Manejo de datos  
-- Funciones utilitarias  
-- Componentes auxiliares  
-- Pipes de búsqueda y filtrado
+- Filtros y pipes  
+- Paginador  
+- Visualización de PDFs  
+- Íconos SVG integrados  
 
 ---
 
@@ -89,21 +82,31 @@ Clonar el repositorio:
 ```bash
 git clone https://github.com/diegogarayzabal/demo-angular.git
 
-🔒 Seguridad
+Instalar dependencias:
 
-Este repositorio contiene únicamente código frontend
-No incluye archivos PHP ni configuraciones privadas del sistema real.
-Carpetas sensibles fueron excluidas mediante .gitignore.
+npm install
+
+▶ Ejecutar la aplicación
+ng serve --open
+
+
+La aplicación se abrirá automáticamente en:
+
+http://localhost:4200/
+
+
+Nota: Esta demo contiene únicamente la parte frontend.
+No incluye backend PHP ni configuraciones privadas del sistema real.
 
 🎯 Objetivo del repositorio
 
-Mostrar conocimientos prácticos en Angular
+Mostrar dominio práctico de Angular
 
 Presentar un ejemplo funcional y organizado
 
-Permitir evaluación por reclutadores y equipos técnicos
+Permitir evaluación de arquitectura, módulos y componentes
 
-Exponer buenas prácticas de modularidad y arquitectura
+Exponer capacidad de diseño frontend aplicado a un caso real
 
 👨‍💻 Autor
 
@@ -115,3 +118,5 @@ LinkedIn: https://linkedin.com/in/diego-garayzabal
 📄 Licencia
 
 Proyecto publicado únicamente con fines demostrativos.
+
+
