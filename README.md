@@ -1,59 +1,117 @@
-# Konsulti4
+# Sistema de Gestión para Estudio Jurídico – Demo en Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+Este proyecto es una demostración de un sistema desarrollado en **Angular** para un estudio jurídico.  
+Permite registrar **visitas al estudio**, llevar una base de **casos**, y gestionar **etapas internas** del proceso.  
+El objetivo del repositorio es mostrar organización, arquitectura, estructura de componentes y capacidad de desarrollo en Angular para fines de evaluación técnica.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tecnologías utilizadas
+
+- **Angular (12 → 19)**  
+- **TypeScript**  
+- **HTML / SCSS**  
+- **Angular Router**  
+- **Programación modular**  
+- **Servicios con RxJS**  
+- **Standalone Components**  
+- **Arquitectura escalable**  
+
+---
+
+## 📌 Funcionalidades principales
+
+### ✔ Registro de visitas al estudio  
+- Carga manual de visitas  
+- Fecha, persona, motivo  
+- Listado con filtros rápidos
+
+### ✔ Gestión simple de casos  
+- Alta de casos  
+- Datos básicos del cliente  
+- Tipo de caso  
+- Estado general  
+- Observaciones
+
+### ✔ Seguimiento de etapas del caso  
+- Registro de cada etapa  
+- Edición y eliminación  
+- Control visual del avance  
+- Orden cronológico
+
+### ✔ Componentes reutilizables  
+- Inputs personalizados  
+- Selects dinámicos  
+- Paginador  
+- Filtros  
+- Tablas responsivas  
+- Componente para visualización de PDFs  
+- Botones, íconos SVG, badges de estado
+
+### ✔ Servicios  
+- Manejo de datos  
+- Funciones utilitarias  
+- Componentes auxiliares  
+- Pipes de búsqueda y filtrado
+
+---
+
+## 📂 Estructura general del proyecto
+
+src/
+├── app/
+│ ├── login/
+│ ├── opciones/
+│ │ ├── menu-casos/
+│ │ ├── menu-casos-nuevo/
+│ │ ├── menu-visitas/
+│ │ ├── menu-visitas-nueva/
+│ ├── componentes/
+│ ├── tuberias/
+│ ├── utilidades/
+│ ├── configuracion/
+│ ├── funciones.service.ts
+│ ├── pdfs.service.ts
+│ ├── globales.ts
+│
+├── assets/
+├── environments/
+├── index.html
+├── styles.scss
+
+
+---
+
+## 🛠 Instalación
+
+Clonar el repositorio:
 
 ```bash
-ng serve
-```
+git clone https://github.com/diegogarayzabal/demo-angular.git
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+🔒 Seguridad
 
-## Code scaffolding
+Este repositorio contiene únicamente código frontend
+No incluye archivos PHP ni configuraciones privadas del sistema real.
+Carpetas sensibles fueron excluidas mediante .gitignore.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🎯 Objetivo del repositorio
 
-```bash
-ng generate component component-name
-```
+Mostrar conocimientos prácticos en Angular
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Presentar un ejemplo funcional y organizado
 
-```bash
-ng generate --help
-```
+Permitir evaluación por reclutadores y equipos técnicos
 
-## Building
+Exponer buenas prácticas de modularidad y arquitectura
 
-To build the project run:
+👨‍💻 Autor
 
-```bash
-ng build
-```
+Diego Garayzabal
+Senior Full-Stack Developer
+Angular • PHP • MySQL • Arquitectura de Software
+LinkedIn: https://linkedin.com/in/diego-garayzabal
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+📄 Licencia
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Proyecto publicado únicamente con fines demostrativos.
